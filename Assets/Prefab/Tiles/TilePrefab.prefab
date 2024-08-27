@@ -1,0 +1,69 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &4182972450730476535
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8027254805003205329}
+  - component: {fileID: 6388615032315399647}
+  m_Layer: 0
+  m_Name: TilePrefab
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 2147483647
+  m_IsActive: 1
+--- !u!4 &8027254805003205329
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4182972450730476535}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6388615032315399647
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4182972450730476535}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce515c27731958842aa0f9d3199c0beb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  position: {x: 0, y: 0}
+  tileType: 0
+  groundPrefab:
+  - {fileID: 1193904474674722340, guid: 27de4d6d234969746861edba2970ca54, type: 3}
+  - {fileID: 4606893335920328192, guid: 8659143e09817be4b82ae047a5c18ac4, type: 3}
+  - {fileID: 2234151746345133198, guid: 05e4c98a5048e0f4c89fc6431452bf0c, type: 3}
+  - {fileID: 8204724537501826825, guid: 411b4e7aca998034489b470af341daaa, type: 3}
+  - {fileID: 6666792559814596632, guid: de7d9ccc6ef5c724da381a5a7d8150ae, type: 3}
+  - {fileID: 7142067773267823001, guid: 516eff6acc82c9c479684c5c618d202a, type: 3}
+  pathPrefab:
+  - {fileID: 3326428850190835300, guid: b64b36c82aa88c04ba8d2abafdfb7f69, type: 3}
+  - {fileID: 8178606246324623542, guid: 590451770df37f74997f7bef33eb5298, type: 3}
+  - {fileID: 3931320031203199195, guid: 9597364b8ff4d634e830bfb847311cb8, type: 3}
+  buildPrefab:
+  - {fileID: 2150250187826063788, guid: 9cf36fb59ec2a614cbbea376ea8cf1c0, type: 3}
+  rockPrefab:
+  - {fileID: 2110766182620947735, guid: 5edc426744921bd459d5dc65705bbb71, type: 3}
+  stonesPrefab:
+  - {fileID: 1786790749708187176, guid: 2e66a66fa4abbfc47b9fe3ad0085866d, type: 3}
+  enemySpawnerPrefab:
+  - {fileID: 5082232512262025951, guid: 0d3ea6a1eec3fcf418853975a1a22cb2, type: 3}
+  mainTowerPrefab:
+  - {fileID: 2532454847341368449, guid: e6999f13dc6a7624e826ebc018cc439a, type: 3}
