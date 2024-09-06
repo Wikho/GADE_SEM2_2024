@@ -1,11 +1,5 @@
 {
   "dependencies": {
-    "com.malcomthonger.tools": {
-      "version": "file:C:/Users/malco/Unity Packages/Tools",
-      "depth": 0,
-      "source": "local",
-      "dependencies": {}
-    },
     "com.unity.ai.navigation": {
       "version": "2.0.0",
       "depth": 0,

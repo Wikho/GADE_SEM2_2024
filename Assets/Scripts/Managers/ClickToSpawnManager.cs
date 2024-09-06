@@ -3,18 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+[System.Serializable]
+public struct SpawnableObject
+{
+    // This struct is really just a collection of info about each spawnable object, this could be scriptable objects, but thats overkill for the use case, its just to remove variable redundancy/repetition.
+    public GameObject prefabLevel1, prefabLevel2, prefabLevel3;
+    public float verticalOffset;
+}
+
 public class ClickToSpawnManager : MonoBehaviour
 {
     public static ClickToSpawnManager instance;
 
-
-    [System.Serializable]
-    public struct SpawnableObject
-    {
-        // This struct is really just a collection of info about each spawnable object, this could be scriptable objects, but thats overkill for the use case, its just to remove variable redundancy/repetition.
-        public GameObject prefabLevel1, prefabLevel2, prefabLevel3;
-        public float verticalOffset;
-    }
 
     private enum ClickMode
     {
@@ -36,6 +36,7 @@ public class ClickToSpawnManager : MonoBehaviour
 
     void Awake()
     {
+        // Singleton Logic
         if (instance == null)
         {
             instance = this;
@@ -46,17 +47,20 @@ public class ClickToSpawnManager : MonoBehaviour
             return;
         }
 
+        // Input System Initialization
         inputSystem = new();
         inputSystem.Gameplay.Enable();
-
         inputSystem.Gameplay.LeftClicking.performed += LeftClickPerformed;
     }
 
+    /// <summary>
+    /// The method called when the <i>Left Mouse Button</i> is pressed, <b>should not be called directly in normal circumstances</b>.
+    /// </summary>
     private void LeftClickPerformed(InputAction.CallbackContext context)
     {
         Debug.Log("Casting a ray rn");
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        // Is this technically mixing New and Old input system? yes, is it much much cleaner than getting the mouse pos with new input system, also yes.
+        // Is this technically mixing new and old input system? yes. Is it much much cleaner than getting the mouse pos with new input system, also yes.
         
         // TODO: Make it not fire when clicking UI elements.
         if (Physics.Raycast(ray, out RaycastHit hit, 1000f, _raycastLayerMask, QueryTriggerInteraction.Ignore)) // Arbitrary distance thats far enough, Mathf.Infinity seems excessive for no reason.
@@ -89,7 +93,7 @@ public class ClickToSpawnManager : MonoBehaviour
             }
             else
             {
-                Debug.Log("Did not get Tile Component");
+                Debug.LogWarning("Did not get Tile Component");
             }
         }
     }
@@ -101,6 +105,7 @@ public class ClickToSpawnManager : MonoBehaviour
     }
 
     #region OnButton events for changing LeftClickMode
+    // These are called in the inspector by buttons. Can be called manually to change the current ClickMode
     public void OnBallistaButtonPress()
     {
         m_currentClickMode = ClickMode.Ballista;

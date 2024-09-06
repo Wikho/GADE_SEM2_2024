@@ -1,6 +1,5 @@
 {
   "dependencies": {
-    "com.malcomthonger.tools": "file:C:/Users/malco/Unity Packages/Tools",
     "com.unity.ai.navigation": "2.0.0",
     "com.unity.collab-proxy": "2.4.4",
     "com.unity.ide.rider": "3.0.27",
