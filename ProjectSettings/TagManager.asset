@@ -10,6 +10,7 @@ TagManager:
   - Castle
   - Enemy
   - Build
+  - Attackable
   layers:
   - Default
   - TransparentFX

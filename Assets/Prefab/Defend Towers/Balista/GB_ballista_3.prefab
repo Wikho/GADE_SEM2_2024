@@ -128,9 +128,11 @@ GameObject:
   m_Component:
   - component: {fileID: 4551389941344782}
   - component: {fileID: 7024192642406826061}
+  - component: {fileID: -3016354156893480072}
+  - component: {fileID: 8816640310669109016}
   m_Layer: 0
   m_Name: GB_ballista_3
-  m_TagString: Untagged
+  m_TagString: Attackable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -173,6 +175,41 @@ MonoBehaviour:
     type: 3}
   firePoint: {fileID: 4477503946595516}
   enemiesInRange: []
+--- !u!114 &-3016354156893480072
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1205523137785642}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13cdffce8cb43ac4bbc1fbc19bd14c2b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentHealth: 1000
+  maxHealth: 1000
+--- !u!135 &8816640310669109016
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1205523137785642}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.3
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!1 &1537118464523326
 GameObject:
   m_ObjectHideFlags: 0

@@ -10,7 +10,6 @@ using UnityEngine;
 [RequireComponent(typeof(Tile))]
 public class BuildableTile : MonoBehaviour
 {
-    
     private Tile m_tileComponent;
     private GameObject m_spawnableCurrentlyAbove;
 
@@ -59,7 +58,6 @@ public class BuildableTile : MonoBehaviour
             return;
 
         // Spawn relevant type
-        // TODO: Change to resource prefab when availible
         m_spawnableCurrentlyAbove = Instantiate(ClickToSpawnManager.instance.resource.prefabLevel1, 
                                         m_tileComponent.gameObject.transform.position + new Vector3(0, ClickToSpawnManager.instance.resource.verticalOffset, 0), 
                                         ClickToSpawnManager.instance.resource.prefabLevel1.transform.rotation, 

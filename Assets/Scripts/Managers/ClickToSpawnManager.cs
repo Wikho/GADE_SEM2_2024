@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -25,7 +26,7 @@ public class ClickToSpawnManager : MonoBehaviour
         Upgrade,
     }
 
-    // These are defined here since this singleton is accessible by every instance of a buildable tile
+    // Defined here to be accessed by the BuildableTile component, not crazy extensible, 
     public SpawnableObject ballista;
     public SpawnableObject resource;
 
@@ -33,6 +34,7 @@ public class ClickToSpawnManager : MonoBehaviour
     NewInputSystem inputSystem;
     [SerializeField] private LayerMask _raycastLayerMask;
     [SerializeField] private ClickMode m_currentClickMode = ClickMode.None;
+    [SerializeField] private bool _printDebug = false;
 
     void Awake()
     {
@@ -58,14 +60,14 @@ public class ClickToSpawnManager : MonoBehaviour
     /// </summary>
     private void LeftClickPerformed(InputAction.CallbackContext context)
     {
-        Debug.Log("Casting a ray rn");
+        if (_printDebug) Debug.Log("Casting a ray rn");
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         // Is this technically mixing new and old input system? yes. Is it much much cleaner than getting the mouse pos with new input system, also yes.
         
-        // TODO: Make it not fire when clicking UI elements.
+        // TODO: Make it not fire when clicking UI elements. (Maybe doesnt happen anymore??)
         if (Physics.Raycast(ray, out RaycastHit hit, 1000f, _raycastLayerMask, QueryTriggerInteraction.Ignore)) // Arbitrary distance thats far enough, Mathf.Infinity seems excessive for no reason.
         {
-            Debug.Log("Hit somthing " + hit.transform.parent.gameObject.name);
+            if (_printDebug) Debug.Log("Hit something " + hit.transform.parent.gameObject.name);
             if (hit.transform.parent.gameObject.TryGetComponent(out Tile tile))
             {
                 if (tile.GetTileType() == Tile.TileType.Build)
@@ -73,10 +75,10 @@ public class ClickToSpawnManager : MonoBehaviour
                     switch (m_currentClickMode)
                     {
                         case ClickMode.Ballista:
-                            hit.transform.parent.GetComponent<BuildableTile>().SpawnBallistaAbove(); //TODO: Check for cost with resources availble
+                            hit.transform.parent.GetComponent<BuildableTile>().SpawnBallistaAbove(); //TODO: Check for cost with resources available
                             break;
                         case ClickMode.Resource:
-                            hit.transform.parent.GetComponent<BuildableTile>().SpawnResourceAbove(); //TODO: Check for cost with resources availble
+                            hit.transform.parent.GetComponent<BuildableTile>().SpawnResourceAbove(); //TODO: Check for cost with resources available
                             break;
                         case ClickMode.Delete:
                             hit.transform.parent.GetComponent<BuildableTile>().DeleteCurrentTower();
@@ -93,7 +95,7 @@ public class ClickToSpawnManager : MonoBehaviour
             }
             else
             {
-                Debug.LogWarning("Did not get Tile Component");
+                if (_printDebug) Debug.LogWarning("Did not get Tile Component");
             }
         }
     }
