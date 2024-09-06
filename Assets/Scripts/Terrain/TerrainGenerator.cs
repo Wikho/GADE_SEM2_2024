@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Unity.AI.Navigation;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class TerrainGenerator : MonoBehaviour
@@ -402,6 +403,9 @@ public class TerrainGenerator : MonoBehaviour
                             if (adjacentTile.GetTileType() == Tile.TileType.Grass)
                             {
                                 adjacentTile.SetTileType(Tile.TileType.Build);
+                                BuildableTile componentRef = adjacentTile.AddComponent<BuildableTile>(); 
+                                // NOTE: I'm adding this here since only buildable tiles should have this component, 
+                                //   the current project structure would require a lot of unwarranted changes to accommodate a separate prefab for buildable tiles, so do this instead.
                             }
                         }
                     }
