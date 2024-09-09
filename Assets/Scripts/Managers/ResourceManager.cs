@@ -5,8 +5,8 @@ public class ResourceManager : MonoBehaviour
     #region Variables
     public static ResourceManager Instance;
 
-    private int wood = 0;
-    private int stone = 0;
+    [SerializeField] private int wood = 0;
+    [SerializeField] private int stone = 0;
 
 
     #endregion

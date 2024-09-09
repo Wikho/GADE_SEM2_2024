@@ -4,7 +4,7 @@ using UnityEngine;
 public class TowerTurret : MonoBehaviour
 {
     #region Variables
-    public bool updateLook = false;
+
     [Header("Settings")]
     [SerializeField] private float damage = 1.0f;
     [SerializeField] private float fireRate = 1.0f;
@@ -33,9 +33,8 @@ public class TowerTurret : MonoBehaviour
     #region Unity Methods
     private void Awake()
     {
-        LookTowardsPath();
-
         AddTowerComponet();
+
         originalRotation = pivotPoint.localRotation;
     }
 
@@ -43,12 +42,6 @@ public class TowerTurret : MonoBehaviour
     {
         HandleRotation();
         HandleTargetingAndShooting();
-
-        if (updateLook)
-        {
-            updateLook = false;
-            LookTowardsPath();
-        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -72,17 +65,17 @@ public class TowerTurret : MonoBehaviour
     #region Functions
     private void HandleRotation()
     {
-        if (currentTarget != null)
-        {
-            Vector3 direction = currentTarget.transform.position - pivotPoint.position;
-            Quaternion lookRotation = Quaternion.LookRotation(direction);
-            pivotPoint.rotation = Quaternion.Slerp(pivotPoint.rotation, lookRotation, Time.deltaTime * fireRate);
-        }
-        else
-        {
-            // Return to the original rotation when no enemies are present
-            pivotPoint.localRotation = Quaternion.Slerp(pivotPoint.localRotation, originalRotation, Time.deltaTime * fireRate);
-        }
+            if (currentTarget != null)
+            {
+                Vector3 direction = currentTarget.transform.position - pivotPoint.position;
+                Quaternion lookRotation = Quaternion.LookRotation(direction);
+                pivotPoint.rotation = Quaternion.Slerp(pivotPoint.rotation, lookRotation, Time.deltaTime * fireRate);
+            }
+            else
+            {
+                // Return to the original rotation when no enemies are present
+                pivotPoint.localRotation = Quaternion.Slerp(pivotPoint.localRotation, originalRotation, Time.deltaTime * fireRate);
+            }
     }
 
     private void HandleTargetingAndShooting()
@@ -127,30 +120,12 @@ public class TowerTurret : MonoBehaviour
         //Collider/Trigger
         col = this.gameObject.AddComponent<SphereCollider>();
         col.isTrigger = true;
-        col.radius = range; 
+        col.radius = range;
     }
 
     public void UpdateRange()
     {
         col.radius = range;
-    }
-
-    public void LookTowardsPath()
-    {
-        //Get the closest path tile from the TerrainGenerator
-        Tile closestPathTile = TerrainGenerator.Instance.GetClosestPathTile(transform.position);
-
-        if (closestPathTile != null)
-        {
-            Vector3 directionToPath = closestPathTile.transform.position - transform.position;
-            directionToPath.y = 0;
-
-            //Calculating the rotation needed to look at the path tile
-            Quaternion lookRotation = Quaternion.LookRotation(directionToPath);
-
-            //rotate towards the target point 
-            transform.rotation = lookRotation;
-        }
     }
 
 

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 
 [System.Serializable]
@@ -60,6 +61,13 @@ public class ClickToSpawnManager : MonoBehaviour
     /// </summary>
     private void LeftClickPerformed(InputAction.CallbackContext context)
     {
+        //Check if the mouse is over any UI elements - I added this Maclome
+        if (EventSystem.current.IsPointerOverGameObject())
+        {
+            if (_printDebug) Debug.Log("Click on UI element, ignoring.");
+            return; //Exit the method if the pointer is over a UI element
+        }
+
         if (_printDebug) Debug.Log("Casting a ray rn");
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         // Is this technically mixing new and old input system? yes. Is it much much cleaner than getting the mouse pos with new input system, also yes.
@@ -100,10 +108,14 @@ public class ClickToSpawnManager : MonoBehaviour
         }
     }
 
+
     private void OnDisable()
     {
         // Unsubscribe on object Disable/Destroy
-        inputSystem.Gameplay.LeftClicking.performed -= LeftClickPerformed;
+        if (inputSystem != null)
+        {
+            inputSystem.Gameplay.LeftClicking.performed -= LeftClickPerformed;
+        }
     }
 
     #region OnButton events for changing LeftClickMode

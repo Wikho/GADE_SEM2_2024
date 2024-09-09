@@ -90,5 +90,15 @@ public class EnemyController : MonoBehaviour
         currentHealth -= dmg;
     }
 
+    public float Health()
+    {
+        return currentHealth;
+    }
+
+    public float MaxHealth()
+    {
+        return maxHealth;
+    }
+
     #endregion
 }

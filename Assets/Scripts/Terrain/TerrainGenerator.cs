@@ -740,7 +740,6 @@ public class TerrainGenerator : MonoBehaviour
 
         Instance = this;
 
-        DontDestroyOnLoad(gameObject);
     }
     #endregion
 }

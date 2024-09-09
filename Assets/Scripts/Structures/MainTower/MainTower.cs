@@ -1,39 +1,33 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class MainTower : MonoBehaviour
 {
-    #region Variables
+    private HealthComponent healthComponent;
 
-    [Header("Health Settings")]
-    public float maxHealth = 100f;
-    public float currentHealth;
-    public bool isDestroyed = false;
-
-    [Header("Attack Settings")]
-    public float attackRange = 10f;
-    public float attackPower = 20f;
-    public float attackCooldown = 1f;
-    private Transform target;
-
-    #endregion
-
-    #region Unity Methods
-    void Start()
+    private void Awake()
     {
-        currentHealth = maxHealth;
+        // Get the HealthComponent attached to this GameObject
+        healthComponent = GetComponent<HealthComponent>();
+
+        if (healthComponent == null)
+        {
+            Debug.LogError("HealthComponent is missing from the MainTower GameObject.");
+        }
     }
-    #endregion
 
-    #region Functions
+    private void Update()
+    {
+        // Check if health is zero or less
+        if (healthComponent != null && healthComponent.Health <= 0)
+        {
+            GameOver();
+        }
+    }
 
+    private void GameOver()
+    {
+        Debug.Log("Game Over! The main tower has been destroyed.");
 
-
-    #endregion
-
-    #region GetSet
-
-    #endregion
+    }
 
 }

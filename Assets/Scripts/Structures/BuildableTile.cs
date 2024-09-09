@@ -99,7 +99,7 @@ public class BuildableTile : MonoBehaviour
         // else do nothing since cant be upgraded, later when the stats to increase, we'd check if its top tier, and then just increase the stat values instead of instantiating a new tower.
 
         // Resources
-        if (m_spawnableCurrentlyAbove.name.Contains("PlaceHolderResourceTower1"))
+        if (m_spawnableCurrentlyAbove.name.Contains("ResourceTower_1"))
         {
             DeleteCurrentTower();
             m_spawnableCurrentlyAbove = Instantiate(ClickToSpawnManager.instance.resource.prefabLevel2, 
@@ -107,7 +107,7 @@ public class BuildableTile : MonoBehaviour
                                             ClickToSpawnManager.instance.resource.prefabLevel2.transform.rotation, 
                                             this.transform);
         }
-        else if (m_spawnableCurrentlyAbove.name.Contains("PlaceHolderResourceTower2"))
+        else if (m_spawnableCurrentlyAbove.name.Contains("ResourceTower_2"))
         {
             DeleteCurrentTower();
             m_spawnableCurrentlyAbove = Instantiate(ClickToSpawnManager.instance.resource.prefabLevel3, 

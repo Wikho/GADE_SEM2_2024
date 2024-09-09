@@ -79,7 +79,7 @@ public class EnemySpawnSettings : MonoBehaviour
             if (spawnPoint != null)
             {
                 enemySpawnPoints.Add(spawnPoint);
-                Debug.Log("Added Spawn Points");
+                //Debug.Log("Added Spawn Points");
             }
         }
 
@@ -162,11 +162,11 @@ public class EnemySpawnSettings : MonoBehaviour
     {
         if (currentWave % 5 == 0)
         {
-            UiManager.Instance.UpdateWave($"Wave {currentWave}\nThe enemies got Stronger!");
+            UiManager.Instance.UpdateWave($"Wave {currentWave}\nThe enemies got Stronger!",currentWave);
         }
         else
         {
-            UiManager.Instance.UpdateWave($"Wave {currentWave}");
+            UiManager.Instance.UpdateWave($"Wave {currentWave}", currentWave);
         }
     }
 
@@ -227,8 +227,6 @@ public class EnemySpawnSettings : MonoBehaviour
         }
 
         Instance = this;
-
-        DontDestroyOnLoad(gameObject);
     }
     #endregion
 }

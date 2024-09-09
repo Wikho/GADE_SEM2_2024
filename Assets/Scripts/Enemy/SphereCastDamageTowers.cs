@@ -8,24 +8,27 @@ public class SphereCastDamageTowers : MonoBehaviour
     [SerializeField] private float _attackCooldown = 0.1f;
 
     [SerializeField] List<GameObject> m_towersInRange; // Going to use the GameObject name as a key since there should hopefully not be duplication
+
+    private Coroutine attackCoroutine;
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Attackable") && !m_towersInRange.Contains(other.gameObject))
         {
-            m_towersInRange.Add(other.gameObject);
+            m_towersInRange.Add(other.transform.parent.gameObject);
         }
     }
     private void OnTriggerExit(Collider other)
     {
         if (other.CompareTag("Attackable") && m_towersInRange.Contains(other.gameObject))
         {
-            m_towersInRange.Remove(other.gameObject);
+            m_towersInRange.Remove(other.transform.parent.gameObject);
         }
     }
 
     private void Start()
     {
-        StartCoroutine(AttackLoop());
+        attackCoroutine = StartCoroutine(AttackLoop());
     }
 
     private IEnumerator AttackLoop()
@@ -38,9 +41,22 @@ public class SphereCastDamageTowers : MonoBehaviour
                 m_towersInRange.RemoveAt(i);
                 continue;
             }
-            m_towersInRange[i].GetComponent<HealthComponent>().TakeDamage(_damage);
+
+            HealthComponent healthComponent = m_towersInRange[i].GetComponent<HealthComponent>();
+            if (healthComponent != null && !healthComponent.IsDead)
+            {
+                healthComponent.TakeDamage(_damage);
+            }
         }
         yield return new WaitForSeconds(_attackCooldown);
         StartCoroutine(AttackLoop());
+    }
+
+    private void OnDestroy()
+    {
+        if (attackCoroutine != null)
+        {
+            StopCoroutine(attackCoroutine);
+        }
     }
 }
