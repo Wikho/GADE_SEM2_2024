@@ -78,6 +78,7 @@ public class TerrainGenerator : MonoBehaviour
     [SerializeField] private List<GameObject> rockPrefabs;
     [SerializeField] private List<GameObject> bushPrefabs;
 
+
     //Gizmo
     private bool showSpawnRadiusGizmo = true;
 
@@ -409,7 +410,7 @@ public class TerrainGenerator : MonoBehaviour
                             if (adjacentTile.GetTileType() == Tile.TileType.Grass)
                             {
                                 adjacentTile.SetTileType(Tile.TileType.Build);
-                                BuildableTile componentRef = adjacentTile.AddComponent<BuildableTile>(); 
+                                BuildableTile componentRef = adjacentTile.AddComponent<BuildableTile>();
                                 // NOTE: I'm adding this here since only buildable tiles should have this component, 
                                 //   the current project structure would require a lot of unwarranted changes to accommodate a separate prefab for buildable tiles, so do this instead.
                             }
@@ -723,7 +724,7 @@ public class TerrainGenerator : MonoBehaviour
             vegetation.transform.parent = tile.transform; // Make it a child of the tile to move together
 
             // Apply random scale to the vegetation
-            float randomScaleFactor = Random.Range(0.4f, 0.9f); 
+            float randomScaleFactor = Random.Range(0.4f, 0.9f);
             vegetation.transform.localScale *= randomScaleFactor;
         }
     }

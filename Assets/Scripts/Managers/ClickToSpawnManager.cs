@@ -38,6 +38,9 @@ public class ClickToSpawnManager : MonoBehaviour
     [SerializeField] private LayerMask _raycastLayerMask;
     [SerializeField] private ClickMode m_currentClickMode = ClickMode.None;
     [SerializeField] private bool _printDebug = false;
+    [SerializeField] private int upgradeWoodCost;
+    [SerializeField] private int upgradeStoneCost;
+    
 
     void Awake()
     {
@@ -82,9 +85,12 @@ public class ClickToSpawnManager : MonoBehaviour
             {
                 if (tile.GetTileType() == Tile.TileType.Build)
                 {
+
                     switch (m_currentClickMode)
                     {
                         case ClickMode.Ballista:
+                            if (hit.transform.parent.GetComponent<BuildableTile>().HasObjectAbove)
+                                return;
                             if (ResourceManager.Instance.CanPurchase(ballista.woodCost, ballista.stoneCost))
                             {
                                 hit.transform.parent.GetComponent<BuildableTile>().SpawnBallistaAbove();
@@ -96,6 +102,8 @@ public class ClickToSpawnManager : MonoBehaviour
                             break;
 
                         case ClickMode.Resource:
+                            if (hit.transform.parent.GetComponent<BuildableTile>().HasObjectAbove)
+                                return;
                             if (ResourceManager.Instance.CanPurchase(resource.woodCost, resource.stoneCost))
                             {
                                 hit.transform.parent.GetComponent<BuildableTile>().SpawnResourceAbove();
@@ -109,9 +117,17 @@ public class ClickToSpawnManager : MonoBehaviour
                             hit.transform.parent.GetComponent<BuildableTile>().DeleteCurrentTower();
                             break;
                         case ClickMode.Upgrade:
-                            hit.transform.parent.GetComponent<BuildableTile>().UpgradeTower();
+                            if (hit.transform.parent.GetComponent<BuildableTile>().IsClear)
+                                return;
+                            if (ResourceManager.Instance.CanPurchase(upgradeWoodCost, upgradeStoneCost))
+                            {
+                                hit.transform.parent.GetComponent<BuildableTile>().UpgradeTower();
+                            }
+                            else
+                            {
+                                UiManager.Instance.NotEnoughResources(); // Call the UI function to show "Not enough resources" message.
+                            }
                             break;
-
                         case ClickMode.None:
                         default:
                             break;

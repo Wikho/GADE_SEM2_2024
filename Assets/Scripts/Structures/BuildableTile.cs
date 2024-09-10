@@ -13,6 +13,9 @@ public class BuildableTile : MonoBehaviour
     private Tile m_tileComponent;
     private GameObject m_spawnableCurrentlyAbove;
 
+    public bool HasObjectAbove { get => m_spawnableCurrentlyAbove != null; }
+    public bool IsClear { get => m_spawnableCurrentlyAbove == null; }
+
     private void Awake()
     {
         m_tileComponent = GetComponent<Tile>();

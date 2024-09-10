@@ -138,12 +138,13 @@ public class UiManager : MonoBehaviour
 
     public void Restart()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name); // Restart the current scene
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name); 
     }
 
     public void MainMenu()
     {
-        SceneManager.LoadScene("MainMenu"); // Load the Main Menu scene, replace "MainMenu" with your actual main menu scene name
+        Time.timeScale = 1f;
+        SceneManager.LoadScene("MainMenu"); 
     }
 
     #endregion
