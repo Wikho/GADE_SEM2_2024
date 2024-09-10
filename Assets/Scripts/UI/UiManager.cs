@@ -5,6 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class UiManager : MonoBehaviour
 {
+    #region Variables
+
     public static UiManager Instance;
 
     [Header("Resource Text")]
@@ -47,7 +49,9 @@ public class UiManager : MonoBehaviour
     [Header("Main Tower Health")]
     [SerializeField] private TMP_Text mainTowerHealth;
 
+    #endregion
 
+    #region Unity Methods
     private void Awake()
     {
         Singleton();
@@ -62,12 +66,14 @@ public class UiManager : MonoBehaviour
             UpdateTimer();
         }
 
-        // Check for "Escape" key press to toggle the pause menu
+        //Check for "Escape" key press to toggle the pause menu
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             TogglePauseMenu();
         }
     }
+
+    #endregion
 
     #region Functions
 
@@ -77,9 +83,9 @@ public class UiManager : MonoBehaviour
         waveCounterText.text = "Wave: " + waveCount.ToString();
         waveUpdateText.text = value;
         waveUpdatePanel.SetActive(true);
-        waveUpdateCanvasGroup.alpha = 1.0f; // Make sure it's fully visible
+        waveUpdateCanvasGroup.alpha = 1.0f; 
 
-        // Start the process to fade out the panel after displaying it
+        //Startinf the process to fade out the panel after displaying it
         StartCoroutine(FadeOutWaveUpdatePanel());
     }
 
@@ -97,8 +103,8 @@ public class UiManager : MonoBehaviour
             yield return null;
         }
 
-        waveUpdateCanvasGroup.alpha = 0.0f; // Ensure it’s completely invisible
-        waveUpdatePanel.SetActive(false);   // Optionally, deactivate the panel
+        waveUpdateCanvasGroup.alpha = 0.0f;
+        waveUpdatePanel.SetActive(false);
     }
 
     public void StartWave()
@@ -138,6 +144,7 @@ public class UiManager : MonoBehaviour
 
     public void Restart()
     {
+        Time.timeScale = 1f;
         SceneManager.LoadScene(SceneManager.GetActiveScene().name); 
     }
 
@@ -202,28 +209,24 @@ public class UiManager : MonoBehaviour
 
     public void NotEnoughResources()
     {
-        // If a warning is already being displayed, stop the previous coroutine
         if (resourceWarningCoroutine != null)
         {
             StopCoroutine(resourceWarningCoroutine);
         }
 
-        // Start the coroutine to show the warning panel
+        //Start the coroutine to show the warning panel
         resourceWarningCoroutine = StartCoroutine(ShowResourceWarning());
     }
 
     private IEnumerator ShowResourceWarning()
     {
-        // Enable the warning panel
+        //Enable the warning panel
         notEnoughResourcesPanel.SetActive(true);
 
-        // Wait for the specified display duration
         yield return new WaitForSeconds(displayDurationNER);
 
-        // Disable the warning panel after the duration
+        //Disable the warning panel
         notEnoughResourcesPanel.SetActive(false);
-
-        // Clear the coroutine reference
         resourceWarningCoroutine = null;
     }
 
@@ -237,7 +240,7 @@ public class UiManager : MonoBehaviour
         //Pause the game
         Time.timeScale = 0f;
 
-        //Hide other UI elements
+        //Hide UI
         mainUI.SetActive(false);
         pauseMenu.SetActive(false);
         waveUpdatePanel.SetActive(false);
@@ -253,7 +256,7 @@ public class UiManager : MonoBehaviour
 
     #endregion
 
-    #region
+    #region Main Tower Health UI
 
     public void MainTowerHealthUI(float currentHealth, float maxHealth)
     {

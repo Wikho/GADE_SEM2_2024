@@ -42,7 +42,7 @@ public class Tile : MonoBehaviour
 
     private void UpdateTilePrefab() //This script gets updated in the Setter
     {
-        // Check if there is an existing Tile/Child and then delete it
+        //This check if there is an existing Tile/Child and then delete it
         if (transform.childCount > 0)
         {
             foreach (Transform child in transform)

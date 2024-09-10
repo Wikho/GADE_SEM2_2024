@@ -8,10 +8,10 @@ public class EnemySpawnPoint : MonoBehaviour
 
     [Header("Spawn Settings")]
     public GameObject enemyPrefab;
-    [SerializeField] private int minGroupSize = 1;      // Min number of enemies in a group
-    [SerializeField] private int maxGroupSize = 5;      // Max number of enemies in a group
-    [SerializeField] private float minSpawnDelay = 1f;  // Min delay between groups
-    [SerializeField] private float maxSpawnDelay = 3f;  // Max delay between groups
+    [SerializeField] private int minGroupSize = 1;      //Min number of enemies in a group
+    [SerializeField] private int maxGroupSize = 5;      //Max number of enemies in a group
+    [SerializeField] private float minSpawnDelay = 1f;  //Min delay between groups
+    [SerializeField] private float maxSpawnDelay = 3f;  //Max delay between groups
     private int totalWaveSize; 
 
     [Space]

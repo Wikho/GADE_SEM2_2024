@@ -91,15 +91,14 @@ public class CameraController : MonoBehaviour
     {
         if (isRotating)
         {
-            // Horizontal rotation (left-right)
+            //left-right
             float horizontalRotation = lookInput.x * rotationSpeed * Time.deltaTime;
             transform.Rotate(Vector3.up, horizontalRotation, Space.World);
 
-            // Vertical rotation (up-down)
+            //up-down
             verticalRotation -= lookInput.y * rotationSpeed * Time.deltaTime;
             verticalRotation = Mathf.Clamp(verticalRotation, -verticalRotationLimit, verticalRotationLimit);
 
-            // Apply vertical rotation to the camera
             Camera.main.transform.localEulerAngles = new Vector3(verticalRotation, Camera.main.transform.localEulerAngles.y, 0);
         }
     }

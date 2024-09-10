@@ -1,6 +1,6 @@
 using System.Collections;
 using UnityEngine;
-using TMPro; // Include TextMeshPro namespace
+using TMPro;
 
 public class ResourceTower : MonoBehaviour
 {
@@ -8,7 +8,7 @@ public class ResourceTower : MonoBehaviour
 
     [Header("Wood Generation Settings")]
     [SerializeField] private bool generateWood = true;
-    [SerializeField] private float woodGenerationInterval = 8f; //  interval for wood generation
+    [SerializeField] private float woodGenerationInterval = 8f; //Time interval for wood generation
     [SerializeField] private int minWoodAmount = 2; //Minimum wood amount generated
     [SerializeField] private int maxWoodAmount = 5; //Maximum wood amount generated
 
@@ -77,7 +77,7 @@ public class ResourceTower : MonoBehaviour
     {
         uiObject.SetActive(true);
         uiText.text = $"+ {amount}";
-        StartCoroutine(HideUIAfterDelay(uiObject, 2f)); // Hide UI after 2 seconds
+        StartCoroutine(HideUIAfterDelay(uiObject, 2f));
     }
 
     private IEnumerator HideUIAfterDelay(GameObject uiObject, float delay)

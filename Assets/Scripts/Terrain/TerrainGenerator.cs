@@ -16,8 +16,8 @@ public class TerrainGenerator : MonoBehaviour
 
     [Space]
     [Header("Enemy Spawner Settings")]
-    [SerializeField][Range(10, 100)] private float minSpawnDistance = 10f; // Minimum distance from center
-    [SerializeField][Range(10, 100)] private float maxSpawnDistance = 20f; // Maximum distance from center
+    [SerializeField][Range(10, 100)] private float minSpawnDistance = 10f; //Minimum distance from center
+    [SerializeField][Range(10, 100)] private float maxSpawnDistance = 20f; //Maximum distance from center
     [SerializeField] private GameObject enemySpawnPointPrefab;
 
     [Space]
@@ -37,22 +37,22 @@ public class TerrainGenerator : MonoBehaviour
 
     [Space]
     [Header("Path Curvature Settings")]
-    [SerializeField][Range(0.0f, 1.0f)] private float curvatureIntensity = 0.5f; // Controls how strong the curvature is
-    [SerializeField][Range(0.0f, 1.0f)] private float curvatureFrequency = 0.1f; // Controls how often the path curves
+    [SerializeField][Range(0.0f, 1.0f)] private float curvatureIntensity = 0.5f; //Controls how strong the curvature is
+    [SerializeField][Range(0.0f, 1.0f)] private float curvatureFrequency = 0.1f; //Controls how often the path curves
 
     [Space]
     [Header("Random Radius Path Settings")]
-    [SerializeField][Range(1, 10)] private int maxRadius = 6; // Maximum radius for the center
-    [SerializeField][Range(1, 10)] private int minRadius = 2;  // Minimum radius for the center
-    [SerializeField][Range(0.0f, 1.0f)] private float irregularity = 0f; // Controls shape irregularity (0 = perfect circle, 1 = highly irregular)
-    [SerializeField][Range(0.0f, 1.0f)] private float density = 1f; // Controls how densely packed the center tiles are (0 = sparse, 1 = dense)
+    [SerializeField][Range(1, 10)] private int maxRadius = 6; //Maximum radius for the center
+    [SerializeField][Range(1, 10)] private int minRadius = 2;  //Minimum radius for the center
+    [SerializeField][Range(0.0f, 1.0f)] private float irregularity = 0f; //Controls shape irregularity (0 = perfect circle, 1 = highly irregular)
+    [SerializeField][Range(0.0f, 1.0f)] private float density = 1f; //Controls how densely packed the center tiles are (0 = sparse, 1 = dense)
 
     [Space]
     [Header("Terrain Height Settings")]
-    [SerializeField] private int flatRadius = 3; // Radius around build tiles where the terrain is flat
-    [SerializeField] private float maxHeight = 5f; // Maximum height of the terrain
-    [SerializeField] private float heightGradient = 1f; // Controls the steepness of the terrain
-    [SerializeField] private AnimationCurve heightCurve; // Curve defining the height gradient
+    [SerializeField] private int flatRadius = 3; //Radius around build tiles where the terrain is flat
+    [SerializeField] private float maxHeight = 5f; //Maximum height of the terrain
+    [SerializeField] private float heightGradient = 1f; //Controls the steepness of the terrain
+    [SerializeField] private AnimationCurve heightCurve; //Curve defining the height gradient
 
     [Space]
     [Header("Terrain Texture Settings")]
@@ -115,7 +115,7 @@ public class TerrainGenerator : MonoBehaviour
         TileVegetation();
         BakeNavMesh();
         if (Application.isPlaying)
-            EnemySpawnSettings.Instance.UpdateEnemySpawners();
+            EnemySpawnSettings.Instance.UpdateEnemySpawners(); //Mam this is for the Editor not breaking, due to it not actualy running the script on the UpdateEnemySpawners because it not in playmode
     }
 
     #region Terrain
@@ -128,13 +128,13 @@ public class TerrainGenerator : MonoBehaviour
         {
             for (int y = 0; y < gridSizeY; y++)
             {
-                // Set the tile position
+                //Set the tile position
                 Vector3 tilePosition = new Vector3(x * tileSize, 0, y * tileSize);
 
-                // Instantiate the tile prefab at the calculated position
+                //Instantiate the tile prefab at the calculated position
                 Tile newTile = Instantiate(tilePrefab, tilePosition, Quaternion.identity).GetComponent<Tile>();
 
-                // Set the tile as a child of the TerrainGenerator
+                //Set the tile as a child of the TerrainGenerator
                 newTile.transform.parent = this.transform;
 
                 //Set the Tile x, y position
@@ -154,17 +154,18 @@ public class TerrainGenerator : MonoBehaviour
 
     public void ClearTerrain()
     {
-        // Clear the list of enemy spawn locations 
+        //I added both deleting foreach loops due the editor being weird if i only use one and not removing evertything
+
         enemySpawnLocations.Clear();
 
-        // Store the current children in a list to avoid modifying the collection while iterating
+        //Store the current children in a list to avoid modifying the collection while iterating
         List<Transform> children = new List<Transform>();
         foreach (Transform child in transform)
         {
             children.Add(child);
         }
 
-        // Destroy each child object
+        //Destroy each child object
         foreach (Transform child in children)
         {
             DestroyImmediate(child.gameObject);
@@ -189,7 +190,7 @@ public class TerrainGenerator : MonoBehaviour
             Vector2Int startPosition = GetValidStartPosition(usedStartingPoints);
             usedStartingPoints.Add(startPosition);
 
-            // Create a radius of path tiles around the start position
+            //Create a radius of path tiles around the start position
             CreatePathRadius(startPosition, startRadius);
 
             Vector2Int currentPos = startPosition;
@@ -197,14 +198,14 @@ public class TerrainGenerator : MonoBehaviour
 
             while (currentPos != towerPosition)
             {
-                // Add randomness to the path's direction
+                //Add randomness to the path's direction
                 Vector2Int direction = GetCurvedDirection(currentPos, towerPosition, lastDirection);
                 currentPos += direction;
                 lastDirection = direction;
 
                 CreatePathAtPosition(currentPos);
 
-                // Ensure the path is continuous and consider the width
+                //Ensure the path is continuous and consider the width
                 for (int w = 0; w < pathWidth; w++)
                 {
                     CreatePathAtPosition(new Vector2Int(currentPos.x + w, currentPos.y));
@@ -212,7 +213,7 @@ public class TerrainGenerator : MonoBehaviour
                 }
             }
 
-            // Add spawn location to List and change tile type
+            //Add spawn location to List and change tile type
             SetSpawnLocation(startPosition);
         }
     }
@@ -222,38 +223,37 @@ public class TerrainGenerator : MonoBehaviour
         List<Vector2Int> possibleStartPoints = new List<Vector2Int>();
         Vector2Int center = new Vector2Int(gridSizeX / 2, gridSizeY / 2);
 
-        // Number of attempts to find a valid spawn point
+        //Number of attempts to find a valid spawn point - Mam this was temp but is now part of the code due to problems?
         int maxAttempts = 100;
 
         for (int attempt = 0; attempt < maxAttempts; attempt++)
         {
-            // Generate a random angle and distance
+            //Generate a random angle and distance
             float angle = Random.Range(0f, Mathf.PI * 2);
             float distance = Random.Range(minSpawnDistance, maxSpawnDistance);
 
-            // Calculate the x and y offsets
+            //Calculate the x and y offsets
             int offsetX = Mathf.RoundToInt(Mathf.Cos(angle) * distance);
             int offsetY = Mathf.RoundToInt(Mathf.Sin(angle) * distance);
 
-            // Calculate the random position
+            //Calculate the random position
             Vector2Int randomPosition = new Vector2Int(center.x + offsetX, center.y + offsetY);
 
-            // Ensure the position is within the grid bounds and not too close to used points
+            //Ensure the position is within the grid bounds and not too close to used points
             if (IsValidPosition(randomPosition) && !IsTooCloseToUsedPoints(randomPosition, usedPoints))
             {
                 possibleStartPoints.Add(randomPosition);
             }
         }
 
-        // Ensure we have valid start points
+        //Ensure we have valid start points
         if (possibleStartPoints.Count > 0)
         {
-            // Select a random start point from the valid points
+            //Select a random start point from the valid points
             return possibleStartPoints[Random.Range(0, possibleStartPoints.Count)];
         }
         else
         {
-            // If no valid points are found, log an error and return a fallback position
             Debug.LogError("No valid start points found within the specified spawn radius. Returning center.");
             return center;
         }
@@ -316,24 +316,24 @@ public class TerrainGenerator : MonoBehaviour
     {
         Vector2Int direction = targetPos - currentPos;
 
-        // Normalize direction
+        //Normalize the direction
         if (direction.x != 0) direction.x /= Mathf.Abs(direction.x);
         if (direction.y != 0) direction.y /= Mathf.Abs(direction.y);
 
-        // Introduce curvature
+        //Curvature
         if (Random.Range(0f, 1f) < curvatureFrequency)
         {
-            // Apply curvature based on the intensity
+            //Apply curvature based on the intensity
             if (Random.Range(0f, 1f) < 0.5f)
                 direction.x += Random.Range(-1, 2) * Mathf.RoundToInt(curvatureIntensity);
             else
                 direction.y += Random.Range(-1, 2) * Mathf.RoundToInt(curvatureIntensity);
 
-            // Ensure we don't deviate too far from the original direction
+            //Ensure we don't deviate too far from the original direction - works mostly mam 
             direction = new Vector2Int(Mathf.Clamp(direction.x, -1, 1), Mathf.Clamp(direction.y, -1, 1));
         }
 
-        // Avoid repeating the same direction to create more natural curves
+        //To avoid repeating the same direction to create more natural curves
         if (direction == lastDirection)
         {
             direction = new Vector2Int(Random.Range(-1, 2), Random.Range(-1, 2));
@@ -348,26 +348,26 @@ public class TerrainGenerator : MonoBehaviour
 
     private void GenerateRandomRadiusPath()
     {
-        // Calculate the center of the grid
+        //Calculate the center of the grid
         Vector2Int center = new Vector2Int(gridSizeX / 2, gridSizeY / 2);
 
-        // Iterate over a square area around the center
+        //Iterate over a square area around the center
         for (int x = -maxRadius; x <= maxRadius; x++)
         {
             for (int y = -maxRadius; y <= maxRadius; y++)
             {
                 Vector2Int position = new Vector2Int(center.x + x, center.y + y);
 
-                // Check if this position is within grid bounds
+                //Check if this position is within grid bounds
                 if (IsValidPosition(position))
                 {
-                    // Calculate distance from the center
+                    //Calculate distance from the center
                     float distanceFromCenter = Vector2Int.Distance(center, position);
 
-                    // Determine if the tile should be part of the path based on the radius and irregularity
+                    //Decides if the tile should be part of the path based on the radius and irregularity
                     float probability = Mathf.InverseLerp(maxRadius, minRadius, distanceFromCenter) * (1 - irregularity * Random.Range(0f, 1f));
 
-                    // Increase probability to favor Path tiles inside the radius
+                    //Increase probability to favor Path tiles inside the radius
                     if (distanceFromCenter < maxRadius * 0.5f)
                     {
                         probability += 0.3f;
@@ -398,7 +398,7 @@ public class TerrainGenerator : MonoBehaviour
         {
             if (tile.GetTileType() == Tile.TileType.Path)
             {
-                // Check adjacent tiles and mark them as Build if they are within the build radius
+                //Check adjacent tiles and mark them as Build if they are within the build radius
                 for (int x = -buildAreaWidth; x <= buildAreaWidth; x++)
                 {
                     for (int y = -buildAreaWidth; y <= buildAreaWidth; y++)
@@ -411,8 +411,6 @@ public class TerrainGenerator : MonoBehaviour
                             {
                                 adjacentTile.SetTileType(Tile.TileType.Build);
                                 BuildableTile componentRef = adjacentTile.AddComponent<BuildableTile>();
-                                // NOTE: I'm adding this here since only buildable tiles should have this component, 
-                                //   the current project structure would require a lot of unwarranted changes to accommodate a separate prefab for buildable tiles, so do this instead.
                             }
                         }
                     }
@@ -430,12 +428,14 @@ public class TerrainGenerator : MonoBehaviour
     {
         Vector2Int center = new Vector2Int(gridSizeX / 2, gridSizeY / 2);
         float distance = Vector2Int.Distance(center, position);
-        return distance <= buildRadius; // Ensure buildRadius is a defined variable
+        return distance <= buildRadius;
     }
 
     #endregion
 
     #region Terrain Height
+
+    //Mam this work but i struggled like a week+ to get this working, but there is still one bug that i can not fix..
 
     private void ApplyTerrainHeight()
     {
@@ -444,24 +444,24 @@ public class TerrainGenerator : MonoBehaviour
             float height = 0f;
             Vector2Int position = tile.GetPosition();
 
-            // Check for flat area around build tiles and enemy spawn points
+            //Check for flat area around build tiles and enemy spawn points
             if (tile.GetTileType() == Tile.TileType.Build || tile.GetTileType() == Tile.TileType.EnemySpawn || IsWithinFlatRadius(position))
             {
                 height = 0f; // Flat area
             }
             else
             {
-                // Calculate distance from the nearest Build tile or EnemySpawn tile
+                // alculate distance from the nearest Build tile or EnemySpawn tile
                 float distanceFromFlat = GetDistanceFromNearestFlatTile(position);
 
-                // Use a smoother transition for height
-                float normalizedDistance = distanceFromFlat / (flatRadius * 2f); // Normalize based on max distance
+                //Use a smoother transition for height
+                float normalizedDistance = distanceFromFlat / (flatRadius * 2f); //Normalize based on max distance
                 height = heightCurve.Evaluate(normalizedDistance) * maxHeight;
             }
 
-            // Apply height to the tile's position
+            //Apply height to the tile's position
             Vector3 newPosition = tile.transform.position;
-            newPosition.y = Mathf.Lerp(0f, height, heightGradient); // Smooth transition
+            newPosition.y = Mathf.Lerp(0f, height, heightGradient);
             tile.transform.position = newPosition;
         }
     }
@@ -510,19 +510,19 @@ public class TerrainGenerator : MonoBehaviour
     {
         foreach (Tile tile in grid)
         {
-            // Preserve the existing tile types for Path, Building, and flat ground around paths
+            //Preserve the existing tile types for Path, Building, and flat ground around paths
             if (tile.GetTileType() == Tile.TileType.Path || tile.GetTileType() == Tile.TileType.Build || IsWithinFlatRadius(tile.GetPosition()))
             {
-                continue; // Skip texture assignment for these tiles
+                continue; //Skip texture assignment for this tiles
             }
 
             Vector2Int position = tile.GetPosition();
             float height = tile.transform.position.y;
 
-            // Determine slope based on surrounding tiles
+            //Slope based on surrounding tiles
             float slope = CalculateSlope(tile, position);
 
-            // Apply texture based on slope, height, and randomness
+            //Apply texture based on slope, height and randomness
             if (slope > steepSlopeThreshold)
             {
                 tile.SetTileType(Tile.TileType.Rock);
@@ -531,7 +531,7 @@ public class TerrainGenerator : MonoBehaviour
             {
                 tile.SetTileType(Tile.TileType.Stones);
 
-                // Increase chance of stones clustering together
+                //Increase chance of stones clustering together
                 if (Random.value < stoneClusterProbability)
                 {
                     PlaceNearbyStones(position);
@@ -604,38 +604,36 @@ public class TerrainGenerator : MonoBehaviour
         Vector2Int centerPosition = new Vector2Int(gridSizeX / 2, gridSizeY / 2);
         Vector3 centerWorldPosition = new Vector3(centerPosition.x * tileSize, 0, centerPosition.y * tileSize);
 
-        // Spawn the Main Tower in the middle of the map
+        //Spawn the Main Tower in the middle of the map
         GameObject tower = Instantiate(mainTowerPrefab, centerWorldPosition + new Vector3(0, 1.9f, 0), Quaternion.identity);
         tower.transform.parent = this.transform;
         mainTower = tower;
 
-        // Calculate the average direction for the main tower's rotation
+        //Calculate the average direction for the main tower's rotation
         Vector3 averageDirection = Vector3.zero;
 
         foreach (Tile spawnTile in enemySpawnLocations)
         {
             Vector3 spawnWorldPosition = spawnTile.transform.position;
 
-            // Spawn the Enemy Spawner structure
+            // pawn the Enemy Spawner structure
             GameObject enemySpawner = Instantiate(enemySpawnPointPrefab, spawnWorldPosition + new Vector3(0, 1.9f, 0), Quaternion.identity);
             enemySpawner.transform.parent = this.transform;
 
-            // Calculate direction towards the center
+            //Calculate direction towards the center
             Vector3 directionToCenter = (centerWorldPosition - spawnWorldPosition).normalized;
 
-            // Rotate the Enemy Spawner towards the center
+            //Rotate the Enemy Spawner towards the center
             enemySpawner.transform.rotation = Quaternion.LookRotation(directionToCenter);
-
-            // Accumulate directions for average calculation
             averageDirection += directionToCenter;
         }
 
-        // Set the main tower's rotation to face the average direction of the enemy spawners
+        //Set the main tower's rotation to face the average direction of the enemy spawners
         if (enemySpawnLocations.Count > 0)
         {
             averageDirection /= enemySpawnLocations.Count;
 
-            // Apply the rotation directly with a 180-degree adjustment around the Y-axis
+            //Apply the rotation directly with a 180-degree adjustment around the Y-axis, the 180-degree is for facing the correct way
             mainTower.transform.rotation = Quaternion.LookRotation(averageDirection) * Quaternion.Euler(0, 180, 0);
         }
     }
@@ -688,17 +686,17 @@ public class TerrainGenerator : MonoBehaviour
         {
             if (tile.GetTileType() == Tile.TileType.Grass && Percentage(20f)) // 20% chance to add bushes
             {
-                // Spawn Bushes on Grass Tiles occasionally
+                //Spawn Bushes on Grass Tiles occasionally
                 SpawnVegetation(tile, bushPrefabs);
             }
             else if (tile.GetTileType() == Tile.TileType.Grass)
             {
-                // Spawn Trees on Grass Tiles
+                //Spawn Trees on Grass Tiles
                 SpawnVegetation(tile, treePrefabs);
             }
             else if (tile.GetTileType() == Tile.TileType.Rock || tile.GetTileType() == Tile.TileType.Stones)
             {
-                // Spawn Rocks on Rock or Stone Tiles
+                //Spawn Rocks on Rock or Stone Tiles
                 SpawnVegetation(tile, rockPrefabs);
             }
 
@@ -710,20 +708,20 @@ public class TerrainGenerator : MonoBehaviour
         if (vegetationPrefabs == null || vegetationPrefabs.Count == 0)
             return;
 
-        // Randomly select a vegetation prefab
+        //Randomly select a vegetation prefab
         GameObject selectedVegetation = vegetationPrefabs[Random.Range(0, vegetationPrefabs.Count)];
 
-        // Get random spawn point
+        //Get random spawn point
         Transform[] spawnPoints = tile.GetVegetationSpawnPoints();
         if (spawnPoints.Length > 0)
         {
             Transform randomPoint = spawnPoints[Random.Range(0, spawnPoints.Length)];
 
-            // Instantiate vegetation at the spawn point
+            //Instantiate vegetation at the spawn point
             GameObject vegetation = Instantiate(selectedVegetation, randomPoint.position, Quaternion.identity);
             vegetation.transform.parent = tile.transform; // Make it a child of the tile to move together
 
-            // Apply random scale to the vegetation
+            //Apply random scale to the vegetation
             float randomScaleFactor = Random.Range(0.4f, 0.9f);
             vegetation.transform.localScale *= randomScaleFactor;
         }
@@ -731,13 +729,11 @@ public class TerrainGenerator : MonoBehaviour
 
     public bool Percentage(float chance)
     {
-        // Ensure that the percentage chance is clamped between 0 and 100
         chance = Mathf.Clamp(chance, 0f, 100f);
 
-        // Generate a random float between 0 and 100
         float randomValue = Random.Range(0f, 100f);
 
-        // Return true if the random value is less than or equal to the chance, otherwise return false
+        //Return true if the random value is less than or equal to the chance, otherwise return false
         return randomValue <= chance;
     }
 
@@ -775,16 +771,17 @@ public class TerrainGenerator : MonoBehaviour
 
     private void OnDrawGizmos()
     {
+        //Mam this works like 90% of time i dont know why 
         if (showSpawnRadiusGizmo)
         {
-            // Calculate the center of the grid
+            //Calculating the center of the grid
             Vector3 center = new Vector3(gridSizeX * tileSize / 2, 0, gridSizeY * tileSize / 2);
 
-            // Draw the minimum spawn distance circle
+            //Draw the minimum spawn distance circle
             Gizmos.color = Color.yellow;
             Gizmos.DrawWireSphere(center, minSpawnDistance * tileSize);
 
-            // Draw the maximum spawn distance circle
+            //Draw the maximum spawn distance circle
             Gizmos.color = Color.red;
             Gizmos.DrawWireSphere(center, maxSpawnDistance * tileSize);
         }

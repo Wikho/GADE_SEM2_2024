@@ -11,7 +11,7 @@ public class TowerBullet : MonoBehaviour
     public Vector3 impactNormal;
     Vector3 lastBulletPosition;
     public TowerTurret twr;
-    float i = 0.05f; // delay time of bullet destruction
+    float i = 0.05f; 
 
     #endregion
 
@@ -46,7 +46,7 @@ public class TowerBullet : MonoBehaviour
         }
     }
 
-    // Bullet hit enemy
+    //Bullet hit enemy
     void OnTriggerEnter(Collider other) 
     {
         if (other.gameObject.transform == target)

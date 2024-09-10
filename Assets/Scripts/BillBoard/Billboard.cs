@@ -24,25 +24,20 @@ public class Billboard : MonoBehaviour
     {
         if (healthboard != null)
         {
-            // Make the healthboard face the camera
+            //Make the healthboard face the camera
             Vector3 directionToCamera = mainCamera.transform.position - healthboard.transform.position;
             Quaternion targetRotation = Quaternion.LookRotation(directionToCamera);
 
-            // Get the rotation angles
             Vector3 targetEulerAngles = targetRotation.eulerAngles;
 
-            // Clamp the upward angle to the maxUpwardAngle
             if (targetEulerAngles.x > 180f)
             {
                 targetEulerAngles.x -= 360f;
             }
             targetEulerAngles.x = Mathf.Clamp(targetEulerAngles.x, -maxUpwardAngle, maxUpwardAngle);
 
-            // Apply the rotation only to the healthboard
             healthboard.transform.rotation = Quaternion.Euler(targetEulerAngles.x, targetEulerAngles.y, 0f);
         }
-
-        // Update the health bar fill amount
         
         //For Towers
         if (healthComponent != null && healthboard != null)

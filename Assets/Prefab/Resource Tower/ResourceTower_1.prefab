@@ -103,8 +103,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13cdffce8cb43ac4bbc1fbc19bd14c2b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentHealth: 500
-  maxHealth: 500
+  currentHealth: 300
+  maxHealth: 300
   canRegen: 1
   regenRate: 1
   regenAmount: 5
@@ -150,13 +150,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   generateWood: 1
-  woodGenerationInterval: 8
+  woodGenerationInterval: 9
   minWoodAmount: 2
   maxWoodAmount: 5
   generateStone: 1
-  stoneGenerationInterval: 10
-  minStoneAmount: 1
-  maxStoneAmount: 4
+  stoneGenerationInterval: 9
+  minStoneAmount: 2
+  maxStoneAmount: 5
   woodUI: {fileID: 6254200233444826806}
   stoneUI: {fileID: 6507407205514647996}
   woodText: {fileID: 1038297006836703156}

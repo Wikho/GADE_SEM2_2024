@@ -72,7 +72,7 @@ public class TowerTurret : MonoBehaviour
             }
             else
             {
-                // Return to the original rotation when no enemies are present
+                //Return to the original rotation when no enemies are present
                 pivotPoint.localRotation = Quaternion.Slerp(pivotPoint.localRotation, originalRotation, Time.deltaTime * fireRate);
             }
     }
@@ -91,7 +91,7 @@ public class TowerTurret : MonoBehaviour
             currentTarget = enemiesInRange.Count > 0 ? enemiesInRange[0] : null;
         }
 
-        //If it have a valid target, proceed shooting
+        //If it have a valid target, continue sooting
         if (currentTarget != null)
         {
             if (fireCooldown <= 0f)
