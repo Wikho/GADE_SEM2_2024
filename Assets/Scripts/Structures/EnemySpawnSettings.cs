@@ -214,6 +214,11 @@ public class EnemySpawnSettings : MonoBehaviour
         SkipRoundTime();
     }
 
+    public int GetWave()
+    {
+        return currentWave;
+    }
+
     #endregion
 
     #region Singleton

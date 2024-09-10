@@ -17,14 +17,33 @@ public class ResourceManager : MonoBehaviour
         Singleton();
     }
 
+    private void Start()
+    {
+        UiManager.Instance.UpdateUiWood();
+        UiManager.Instance.UpdateUiStone();
+    }
     #endregion
 
     #region Functions
 
-    private bool CanPurchase(int woodAmount, int stoneAmount)
+    public bool CanPurchase(int woodAmount, int stoneAmount)
     {
+
         //True(Enought resources) false(GetGood/NotEnought)
-        return (Wood >= woodAmount && Stone >= stoneAmount);
+        if (Wood >= woodAmount && Stone >= stoneAmount)
+        {
+            RemoveWood(woodAmount);
+            RemoveStone(stoneAmount);
+
+            UiManager.Instance.UpdateUiWood();
+            UiManager.Instance.UpdateUiStone();
+            return true;
+        }
+        else
+        {
+            return false; 
+        }
+
     }
 
     #endregion

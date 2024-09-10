@@ -65,7 +65,7 @@ public class EnemySpawnPoint : MonoBehaviour
         //Set Parent
         newEnemy.transform.parent = enemySpawnParent;
 
-        //Apply Multiplier 
+        //Apply Multipliers 
         newEnemy.GetComponent<EnemyController>().healthMultiplier(enemyHealthMultiplier);
         newEnemy.GetComponent<EnemyController>().speedMultiplier(enemySpeedMultiplier);
         newEnemy.GetComponent<EnemyController>().damageMultiplier(enemyDamageMultiplier);

@@ -9,7 +9,7 @@ public class EnemyController : MonoBehaviour
     [SerializeField] private float maxHealth = 10;
     [SerializeField] float currentHealth;
     [SerializeField] private float speed = 3.5f;
-    [SerializeField] private float damage = 100;
+    [SerializeField] private SphereCastDamageTowers damage;
 
     [SerializeField] private Transform TestLocation;
     private Transform target;
@@ -82,7 +82,7 @@ public class EnemyController : MonoBehaviour
     }
     public void damageMultiplier(float mul)
     {
-        damage *= mul;
+        damage.DamageMultiplyer(mul);
     }
 
     public void Damage(float dmg)

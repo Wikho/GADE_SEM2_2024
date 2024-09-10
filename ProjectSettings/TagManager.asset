@@ -11,6 +11,7 @@ TagManager:
   - Enemy
   - Build
   - Attackable
+  - MaxCameraMove
   layers:
   - Default
   - TransparentFX

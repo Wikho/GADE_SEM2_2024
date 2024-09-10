@@ -1,3 +1,4 @@
+using NUnit.Framework;
 using UnityEngine;
 
 public class Tile : MonoBehaviour
@@ -9,6 +10,10 @@ public class Tile : MonoBehaviour
     [Space]
     [Header("Type")]
     [SerializeField] private TileType tileType = TileType.Grass;
+
+    [Space]
+    [Header("Vegetation Spawn Points")]
+    [SerializeField] private Transform[] vegetationSpawns;
 
     public enum TileType
     {
@@ -42,7 +47,14 @@ public class Tile : MonoBehaviour
         {
             foreach (Transform child in transform)
             {
-                DestroyImmediate(child.gameObject);
+                if (child.gameObject.name == "VegetationSpawns")
+                {
+                    //Dont Destroy
+                }
+                else
+                {
+                    DestroyImmediate(child.gameObject);
+                }
             }
         }
 
@@ -133,6 +145,11 @@ public class Tile : MonoBehaviour
     public TileType GetTileType()
     {
         return tileType;
+    }
+
+    public Transform[] GetVegetationSpawnPoints()
+    {
+        return vegetationSpawns;
     }
 
     #endregion

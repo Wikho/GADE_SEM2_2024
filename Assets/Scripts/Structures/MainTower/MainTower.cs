@@ -6,7 +6,6 @@ public class MainTower : MonoBehaviour
 
     private void Awake()
     {
-        // Get the HealthComponent attached to this GameObject
         healthComponent = GetComponent<HealthComponent>();
 
         if (healthComponent == null)
@@ -15,19 +14,22 @@ public class MainTower : MonoBehaviour
         }
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
-        // Check if health is zero or less
         if (healthComponent != null && healthComponent.Health <= 0)
         {
             GameOver();
+        }
+        else
+        {
+            UiManager.Instance.MainTowerHealthUI(healthComponent.Health, healthComponent.MaxHealth);
         }
     }
 
     private void GameOver()
     {
         Debug.Log("Game Over! The main tower has been destroyed.");
-
+        UiManager.Instance.GameOver();
     }
 
 }

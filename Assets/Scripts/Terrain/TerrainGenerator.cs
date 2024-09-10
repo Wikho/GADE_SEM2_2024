@@ -73,6 +73,11 @@ public class TerrainGenerator : MonoBehaviour
     [Header("NavMeshSurface")]
     [SerializeField] private NavMeshSurface navMeshSurface;
 
+    [Header("Vegetation Settings")]
+    [SerializeField] private List<GameObject> treePrefabs;
+    [SerializeField] private List<GameObject> rockPrefabs;
+    [SerializeField] private List<GameObject> bushPrefabs;
+
     //Gizmo
     private bool showSpawnRadiusGizmo = true;
 
@@ -106,6 +111,7 @@ public class TerrainGenerator : MonoBehaviour
         ApplyTerrainHeight();
         ApplyTerrainTextures();
         SpawnStructures();
+        TileVegetation();
         BakeNavMesh();
         if (Application.isPlaying)
             EnemySpawnSettings.Instance.UpdateEnemySpawners();
@@ -670,6 +676,69 @@ public class TerrainGenerator : MonoBehaviour
 
 
 
+
+    #endregion
+
+    #region Vegetation
+
+    private void TileVegetation()
+    {
+        foreach (Tile tile in grid)
+        {
+            if (tile.GetTileType() == Tile.TileType.Grass && Percentage(20f)) // 20% chance to add bushes
+            {
+                // Spawn Bushes on Grass Tiles occasionally
+                SpawnVegetation(tile, bushPrefabs);
+            }
+            else if (tile.GetTileType() == Tile.TileType.Grass)
+            {
+                // Spawn Trees on Grass Tiles
+                SpawnVegetation(tile, treePrefabs);
+            }
+            else if (tile.GetTileType() == Tile.TileType.Rock || tile.GetTileType() == Tile.TileType.Stones)
+            {
+                // Spawn Rocks on Rock or Stone Tiles
+                SpawnVegetation(tile, rockPrefabs);
+            }
+
+        }
+    }
+
+    private void SpawnVegetation(Tile tile, List<GameObject> vegetationPrefabs)
+    {
+        if (vegetationPrefabs == null || vegetationPrefabs.Count == 0)
+            return;
+
+        // Randomly select a vegetation prefab
+        GameObject selectedVegetation = vegetationPrefabs[Random.Range(0, vegetationPrefabs.Count)];
+
+        // Get random spawn point
+        Transform[] spawnPoints = tile.GetVegetationSpawnPoints();
+        if (spawnPoints.Length > 0)
+        {
+            Transform randomPoint = spawnPoints[Random.Range(0, spawnPoints.Length)];
+
+            // Instantiate vegetation at the spawn point
+            GameObject vegetation = Instantiate(selectedVegetation, randomPoint.position, Quaternion.identity);
+            vegetation.transform.parent = tile.transform; // Make it a child of the tile to move together
+
+            // Apply random scale to the vegetation
+            float randomScaleFactor = Random.Range(0.4f, 0.9f); 
+            vegetation.transform.localScale *= randomScaleFactor;
+        }
+    }
+
+    public bool Percentage(float chance)
+    {
+        // Ensure that the percentage chance is clamped between 0 and 100
+        chance = Mathf.Clamp(chance, 0f, 100f);
+
+        // Generate a random float between 0 and 100
+        float randomValue = Random.Range(0f, 100f);
+
+        // Return true if the random value is less than or equal to the chance, otherwise return false
+        return randomValue <= chance;
+    }
 
     #endregion
 

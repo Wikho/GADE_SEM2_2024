@@ -25,13 +25,28 @@ public class UiManager : MonoBehaviour
     [SerializeField] private TMP_Text waveUpdateText;
 
     [Header("Wave Fade Settings")]
-    [SerializeField] private float displayDuration = 2.0f;  // Time to display the panel before fading
-    [SerializeField] private float fadeDuration = 1.0f;     // Duration of the fade-out
-    [SerializeField] private CanvasGroup waveUpdateCanvasGroup; // CanvasGroup for fading
+    [SerializeField] private float displayDuration = 2.0f;  
+    [SerializeField] private float fadeDuration = 1.0f;     
+    [SerializeField] private CanvasGroup waveUpdateCanvasGroup; 
 
     [Header("Pause Menu Settings")]
     [SerializeField] private GameObject mainUI;
     [SerializeField] private GameObject pauseMenu;
+
+    [Header("End Game Settings")]
+    [SerializeField] private GameObject endGamePanel; 
+    [SerializeField] private TMP_Text endGameWaveText; 
+    [SerializeField] private TMP_Text endGameTimeText;
+
+    [Header("Resource Warning Settings")]
+    [SerializeField] private GameObject notEnoughResourcesPanel;
+    [SerializeField] private float displayDurationNER = 1.0f;
+
+    private Coroutine resourceWarningCoroutine;
+
+    [Header("Main Tower Health")]
+    [SerializeField] private TMP_Text mainTowerHealth;
+
 
     private void Awake()
     {
@@ -180,6 +195,72 @@ public class UiManager : MonoBehaviour
             timerText.text = $"{minutes:00}:{seconds:00}";
         }
     }
+    #endregion
+
+    #region Not Enought Resources PopUp
+
+    public void NotEnoughResources()
+    {
+        // If a warning is already being displayed, stop the previous coroutine
+        if (resourceWarningCoroutine != null)
+        {
+            StopCoroutine(resourceWarningCoroutine);
+        }
+
+        // Start the coroutine to show the warning panel
+        resourceWarningCoroutine = StartCoroutine(ShowResourceWarning());
+    }
+
+    private IEnumerator ShowResourceWarning()
+    {
+        // Enable the warning panel
+        notEnoughResourcesPanel.SetActive(true);
+
+        // Wait for the specified display duration
+        yield return new WaitForSeconds(displayDurationNER);
+
+        // Disable the warning panel after the duration
+        notEnoughResourcesPanel.SetActive(false);
+
+        // Clear the coroutine reference
+        resourceWarningCoroutine = null;
+    }
+
+
+    #endregion
+
+    #region GameOver
+
+    public void GameOver()
+    {
+        //Pause the game
+        Time.timeScale = 0f;
+
+        //Hide other UI elements
+        mainUI.SetActive(false);
+        pauseMenu.SetActive(false);
+        waveUpdatePanel.SetActive(false);
+
+        //Display the end game panel
+        endGamePanel.SetActive(true);
+
+        //Update the wave and time texts
+        endGameWaveText.text = "Waves Survived: " + EnemySpawnSettings.Instance.GetWave().ToString();
+        endGameTimeText.text = "Time Survived: " + timerText.text;
+    }
+
+
+    #endregion
+
+    #region
+
+    public void MainTowerHealthUI(float currentHealth, float maxHealth)
+    {
+        int healthPercentage = Mathf.Clamp(Mathf.RoundToInt((currentHealth / maxHealth) * 100), 0, 100);
+
+        mainTowerHealth.text =": " + healthPercentage.ToString();
+    }
+
     #endregion
 
     #region GetSet

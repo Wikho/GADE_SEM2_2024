@@ -11,6 +11,8 @@ public struct SpawnableObject
     // This struct is really just a collection of info about each spawnable object, this could be scriptable objects, but thats overkill for the use case, its just to remove variable redundancy/repetition.
     public GameObject prefabLevel1, prefabLevel2, prefabLevel3;
     public float verticalOffset;
+    public int woodCost;
+    public int stoneCost;
 }
 
 public class ClickToSpawnManager : MonoBehaviour
@@ -83,10 +85,25 @@ public class ClickToSpawnManager : MonoBehaviour
                     switch (m_currentClickMode)
                     {
                         case ClickMode.Ballista:
-                            hit.transform.parent.GetComponent<BuildableTile>().SpawnBallistaAbove(); //TODO: Check for cost with resources available
+                            if (ResourceManager.Instance.CanPurchase(ballista.woodCost, ballista.stoneCost))
+                            {
+                                hit.transform.parent.GetComponent<BuildableTile>().SpawnBallistaAbove();
+                            }
+                            else
+                            {
+                                UiManager.Instance.NotEnoughResources(); // Call the UI function to show "Not enough resources" message.
+                            }
                             break;
+
                         case ClickMode.Resource:
-                            hit.transform.parent.GetComponent<BuildableTile>().SpawnResourceAbove(); //TODO: Check for cost with resources available
+                            if (ResourceManager.Instance.CanPurchase(resource.woodCost, resource.stoneCost))
+                            {
+                                hit.transform.parent.GetComponent<BuildableTile>().SpawnResourceAbove();
+                            }
+                            else
+                            {
+                                UiManager.Instance.NotEnoughResources(); // Call the UI function to show "Not enough resources" message.
+                            }
                             break;
                         case ClickMode.Delete:
                             hit.transform.parent.GetComponent<BuildableTile>().DeleteCurrentTower();

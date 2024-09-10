@@ -777,12 +777,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c8b2a9aa2e28ee489fbf040f5f71d05, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 100
-  currentHealth: 0
-  isDestroyed: 0
-  attackRange: 10
-  attackPower: 20
-  attackCooldown: 1
 --- !u!114 &1428021671482377599
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1038,10 +1032,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b5e4b963bcf64f4796c0285c3483c16, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  updateLook: 0
   damage: 1
   fireRate: 0.4
-  range: 5
+  range: 15
   pivotPoint: {fileID: 5111369899036052085}
   bulletPrefab: {fileID: 1546313533754510, guid: c195d6464151d83439142e8f59e43fb9,
     type: 3}
@@ -1676,10 +1669,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b5e4b963bcf64f4796c0285c3483c16, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  updateLook: 0
   damage: 1
   fireRate: 0.4
-  range: 5
+  range: 15
   pivotPoint: {fileID: 4997238373908498994}
   bulletPrefab: {fileID: 1546313533754510, guid: c195d6464151d83439142e8f59e43fb9,
     type: 3}
@@ -2592,10 +2584,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b5e4b963bcf64f4796c0285c3483c16, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  updateLook: 0
   damage: 1
   fireRate: 0.4
-  range: 5
+  range: 15
   pivotPoint: {fileID: 8363927571199383177}
   bulletPrefab: {fileID: 1546313533754510, guid: c195d6464151d83439142e8f59e43fb9,
     type: 3}
@@ -2677,10 +2668,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b5e4b963bcf64f4796c0285c3483c16, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  updateLook: 0
   damage: 1
   fireRate: 0.4
-  range: 5
+  range: 15
   pivotPoint: {fileID: 5110311903494468396}
   bulletPrefab: {fileID: 1546313533754510, guid: c195d6464151d83439142e8f59e43fb9,
     type: 3}

@@ -59,4 +59,9 @@ public class SphereCastDamageTowers : MonoBehaviour
             StopCoroutine(attackCoroutine);
         }
     }
+
+    public void DamageMultiplyer(float value)
+    {
+        _damage *= value;
+    }
 }

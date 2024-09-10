@@ -34,7 +34,6 @@ public class TowerTurret : MonoBehaviour
     private void Awake()
     {
         AddTowerComponet();
-
         originalRotation = pivotPoint.localRotation;
     }
 
@@ -120,7 +119,7 @@ public class TowerTurret : MonoBehaviour
         //Collider/Trigger
         col = this.gameObject.AddComponent<SphereCollider>();
         col.isTrigger = true;
-        col.radius = range;
+        UpdateRange();
     }
 
     public void UpdateRange()
