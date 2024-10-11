@@ -44,6 +44,9 @@ public class ClickToSpawnManager : MonoBehaviour
     [SerializeField] private LayerMask _raycastLayerMask;
     [SerializeField] private ClickMode m_currentClickMode = ClickMode.None;
     [SerializeField] private bool _printDebug = false;
+    [SerializeField] private int totalBuildingsBuild = 0;
+    [SerializeField] private int totalBuildingsUpgraded = 0;
+    [SerializeField] private int totalResourceBuildings = 0;
 
     [Header("Upgrade Cost")]
     [SerializeField] private int upgradeWoodCost;
@@ -103,6 +106,7 @@ public class ClickToSpawnManager : MonoBehaviour
                             if (ResourceManager.Instance.CanPurchase(ballista.woodCost, ballista.stoneCost))
                             {
                                 hit.transform.parent.GetComponent<BuildableTile>().SpawnBallistaAbove();
+                                totalBuildingsBuild++;
                             }
                             else
                             {
@@ -116,6 +120,7 @@ public class ClickToSpawnManager : MonoBehaviour
                             if (ResourceManager.Instance.CanPurchase(crystal.woodCost, crystal.stoneCost))
                             {
                                 buildableTile.SpawnCrystalAbove();
+                                totalBuildingsBuild++;
                             }
                             else
                             {
@@ -129,6 +134,7 @@ public class ClickToSpawnManager : MonoBehaviour
                             if (ResourceManager.Instance.CanPurchase(missel.woodCost, missel.stoneCost))
                             {
                                 buildableTile.SpawnMisselAbove();
+                                totalBuildingsBuild++;
                             }
                             else
                             {
@@ -142,6 +148,7 @@ public class ClickToSpawnManager : MonoBehaviour
                             if (ResourceManager.Instance.CanPurchase(sendGlass.woodCost, sendGlass.stoneCost))
                             {
                                 buildableTile.SpawnSendGlassAbove();
+                                totalBuildingsBuild++;
                             }
                             else
                             {
@@ -155,6 +162,7 @@ public class ClickToSpawnManager : MonoBehaviour
                             if (ResourceManager.Instance.CanPurchase(resource.woodCost, resource.stoneCost))
                             {
                                 hit.transform.parent.GetComponent<BuildableTile>().SpawnResourceAbove();
+                                totalResourceBuildings++;
                             }
                             else
                             {
@@ -164,6 +172,7 @@ public class ClickToSpawnManager : MonoBehaviour
 
                         case ClickMode.Delete:
                             hit.transform.parent.GetComponent<BuildableTile>().DeleteCurrentTower();
+                            totalBuildingsBuild--;
                             break;
 
                         case ClickMode.Upgrade:
@@ -172,6 +181,7 @@ public class ClickToSpawnManager : MonoBehaviour
                             if (ResourceManager.Instance.CanPurchase(upgradeWoodCost, upgradeStoneCost))
                             {
                                 hit.transform.parent.GetComponent<BuildableTile>().UpgradeTower();
+                                totalBuildingsUpgraded++;
                             }
                             else
                             {
