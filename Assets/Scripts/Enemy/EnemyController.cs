@@ -75,14 +75,22 @@ public class EnemyController : MonoBehaviour
     public void healthMultiplier(float mul)
     {
         maxHealth *= mul;
+        currentHealth = maxHealth;
     }
     public void speedMultiplier(float mul)
     {
         speed *= mul;
+        if (navMeshAgent != null)
+        {
+            navMeshAgent.speed = speed;
+        }
     }
     public void damageMultiplier(float mul)
     {
-        damage.DamageMultiplyer(mul);
+        if (damage != null)
+        {
+            damage.DamageMultiplyer(mul);
+        }
     }
 
     public void Damage(float dmg)

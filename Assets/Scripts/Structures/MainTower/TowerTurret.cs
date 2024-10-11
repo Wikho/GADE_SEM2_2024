@@ -106,7 +106,7 @@ public class TowerTurret : MonoBehaviour
     {
         if (bulletPrefab != null && firePoint != null && currentTarget != null)
         {
-            GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
+            GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation, this.transform);
 
             //Give Bullet target position
             bullet.GetComponent<TowerBullet>().target = currentTarget.transform;

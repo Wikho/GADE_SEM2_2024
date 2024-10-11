@@ -44,9 +44,9 @@ public class ClickToSpawnManager : MonoBehaviour
     [SerializeField] private LayerMask _raycastLayerMask;
     [SerializeField] private ClickMode m_currentClickMode = ClickMode.None;
     [SerializeField] private bool _printDebug = false;
-    [SerializeField] private int totalBuildingsBuild = 0;
-    [SerializeField] private int totalBuildingsUpgraded = 0;
-    [SerializeField] private int totalResourceBuildings = 0;
+    [SerializeField] public int totalBuildingsBuild = 0;
+    [SerializeField] public int totalBuildingsUpgraded = 0;
+    [SerializeField] public int totalResourceBuildings = 0;
 
     [Header("Upgrade Cost")]
     [SerializeField] private int upgradeWoodCost;

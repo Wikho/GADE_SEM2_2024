@@ -14,7 +14,7 @@ public class MainTower : MonoBehaviour
         }
     }
 
-    private void FixedUpdate()
+    private void Update()
     {
         if (healthComponent != null && healthComponent.Health <= 0)
         {
