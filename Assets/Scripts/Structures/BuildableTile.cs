@@ -18,7 +18,7 @@ public class BuildableTile : MonoBehaviour
 
     private void Awake()
     {
-        m_tileComponent = GetComponent<Tile>();
+        m_tileComponent = GetComponent<Tile>(); 
     }
 
     /// <summary>
@@ -42,6 +42,72 @@ public class BuildableTile : MonoBehaviour
                                         m_tileComponent.gameObject.transform.position + new Vector3(0, ClickToSpawnManager.instance.ballista.verticalOffset, 0), 
                                         ClickToSpawnManager.instance.ballista.prefabLevel1.transform.rotation, 
                                         this.transform);
+    }
+
+    public void SpawnCrystalAbove()
+    {
+        // Guard clauses
+        if (ClickToSpawnManager.instance.crystal.prefabLevel1 == null)
+        {
+            Debug.LogWarning("Crystal Prefab not found");
+            return;
+        }
+        if (m_tileComponent.GetTileType() != Tile.TileType.Build)
+            return;
+        if (m_spawnableCurrentlyAbove != null)
+            return;
+
+        // Spawn Crystal
+        m_spawnableCurrentlyAbove = Instantiate(
+            ClickToSpawnManager.instance.crystal.prefabLevel1,
+            m_tileComponent.gameObject.transform.position + new Vector3(0, ClickToSpawnManager.instance.crystal.verticalOffset, 0),
+            ClickToSpawnManager.instance.crystal.prefabLevel1.transform.rotation,
+            this.transform
+        );
+    }
+
+    public void SpawnMisselAbove()
+    {
+        // Guard clauses
+        if (ClickToSpawnManager.instance.missel.prefabLevel1 == null)
+        {
+            Debug.LogWarning("Missel Prefab not found");
+            return;
+        }
+        if (m_tileComponent.GetTileType() != Tile.TileType.Build)
+            return;
+        if (m_spawnableCurrentlyAbove != null)
+            return;
+
+        // Spawn Missel
+        m_spawnableCurrentlyAbove = Instantiate(
+            ClickToSpawnManager.instance.missel.prefabLevel1,
+            m_tileComponent.gameObject.transform.position + new Vector3(0, ClickToSpawnManager.instance.missel.verticalOffset, 0),
+            ClickToSpawnManager.instance.missel.prefabLevel1.transform.rotation,
+            this.transform
+        );
+    }
+
+    public void SpawnSendGlassAbove()
+    {
+        // Guard clauses
+        if (ClickToSpawnManager.instance.sendGlass.prefabLevel1 == null)
+        {
+            Debug.LogWarning("SendGlass Prefab not found");
+            return;
+        }
+        if (m_tileComponent.GetTileType() != Tile.TileType.Build)
+            return;
+        if (m_spawnableCurrentlyAbove != null)
+            return;
+
+        // Spawn SendGlass
+        m_spawnableCurrentlyAbove = Instantiate(
+            ClickToSpawnManager.instance.sendGlass.prefabLevel1,
+            m_tileComponent.gameObject.transform.position + new Vector3(0, ClickToSpawnManager.instance.sendGlass.verticalOffset, 0),
+            ClickToSpawnManager.instance.sendGlass.prefabLevel1.transform.rotation,
+            this.transform
+        );
     }
 
     /// <summary>
@@ -99,7 +165,60 @@ public class BuildableTile : MonoBehaviour
                                             ClickToSpawnManager.instance.ballista.prefabLevel3.transform.rotation, 
                                             this.transform);
         }
-        // else do nothing since cant be upgraded, later when the stats to increase, we'd check if its top tier, and then just increase the stat values instead of instantiating a new tower.
+
+        //Crystal's
+        if (m_spawnableCurrentlyAbove.name.Contains("GB_Crystal_1"))
+        {
+            DeleteCurrentTower();
+            m_spawnableCurrentlyAbove = Instantiate(ClickToSpawnManager.instance.crystal.prefabLevel2,
+                                            m_tileComponent.gameObject.transform.position + new Vector3(0, ClickToSpawnManager.instance.crystal.verticalOffset, 0),
+                                            ClickToSpawnManager.instance.crystal.prefabLevel2.transform.rotation,
+                                            this.transform);
+        }
+        else if (m_spawnableCurrentlyAbove.name.Contains("GB_Crystal_2"))
+        {
+            DeleteCurrentTower();
+            m_spawnableCurrentlyAbove = Instantiate(ClickToSpawnManager.instance.crystal.prefabLevel3,
+                                            m_tileComponent.gameObject.transform.position + new Vector3(0, ClickToSpawnManager.instance.crystal.verticalOffset, 0),
+                                            ClickToSpawnManager.instance.crystal.prefabLevel3.transform.rotation,
+                                            this.transform);
+        }
+
+        //Missel's
+        if (m_spawnableCurrentlyAbove.name.Contains("GB_Pyro_1"))
+        {
+            DeleteCurrentTower();
+            m_spawnableCurrentlyAbove = Instantiate(ClickToSpawnManager.instance.missel.prefabLevel2,
+                                            m_tileComponent.gameObject.transform.position + new Vector3(0, ClickToSpawnManager.instance.missel.verticalOffset, 0),
+                                            ClickToSpawnManager.instance.missel.prefabLevel2.transform.rotation,
+                                            this.transform);
+        }
+        else if (m_spawnableCurrentlyAbove.name.Contains("GB_Pyro_2"))
+        {
+            DeleteCurrentTower();
+            m_spawnableCurrentlyAbove = Instantiate(ClickToSpawnManager.instance.missel.prefabLevel3,
+                                            m_tileComponent.gameObject.transform.position + new Vector3(0, ClickToSpawnManager.instance.missel.verticalOffset, 0),
+                                            ClickToSpawnManager.instance.missel.prefabLevel3.transform.rotation,
+                                            this.transform);
+        }
+
+        //SandGlass's
+        if (m_spawnableCurrentlyAbove.name.Contains("GB_Sandglass_1"))
+        {
+            DeleteCurrentTower();
+            m_spawnableCurrentlyAbove = Instantiate(ClickToSpawnManager.instance.sendGlass.prefabLevel2,
+                                            m_tileComponent.gameObject.transform.position + new Vector3(0, ClickToSpawnManager.instance.sendGlass.verticalOffset, 0),
+                                            ClickToSpawnManager.instance.sendGlass.prefabLevel2.transform.rotation,
+                                            this.transform);
+        }
+        else if (m_spawnableCurrentlyAbove.name.Contains("GB_Sandglass_2"))
+        {
+            DeleteCurrentTower();
+            m_spawnableCurrentlyAbove = Instantiate(ClickToSpawnManager.instance.sendGlass.prefabLevel3,
+                                            m_tileComponent.gameObject.transform.position + new Vector3(0, ClickToSpawnManager.instance.sendGlass.verticalOffset, 0),
+                                            ClickToSpawnManager.instance.sendGlass.prefabLevel3.transform.rotation,
+                                            this.transform);
+        }
 
         // Resources
         if (m_spawnableCurrentlyAbove.name.Contains("ResourceTower_1"))

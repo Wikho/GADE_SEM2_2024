@@ -24,6 +24,9 @@ public class ClickToSpawnManager : MonoBehaviour
     {
         None = 0,
         Ballista,
+        Crystal,    
+        Missel,     
+        SandGlass,
         Resource,
         Delete,
         Upgrade,
@@ -31,6 +34,9 @@ public class ClickToSpawnManager : MonoBehaviour
 
     // Defined here to be accessed by the BuildableTile component, not crazy extensible, 
     public SpawnableObject ballista;
+    public SpawnableObject crystal;
+    public SpawnableObject missel;
+    public SpawnableObject sendGlass;
     public SpawnableObject resource;
 
 
@@ -38,6 +44,8 @@ public class ClickToSpawnManager : MonoBehaviour
     [SerializeField] private LayerMask _raycastLayerMask;
     [SerializeField] private ClickMode m_currentClickMode = ClickMode.None;
     [SerializeField] private bool _printDebug = false;
+
+    [Header("Upgrade Cost")]
     [SerializeField] private int upgradeWoodCost;
     [SerializeField] private int upgradeStoneCost;
     
@@ -77,7 +85,7 @@ public class ClickToSpawnManager : MonoBehaviour
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         // Is this technically mixing new and old input system? yes. Is it much much cleaner than getting the mouse pos with new input system, also yes.
         
-        // TODO: Make it not fire when clicking UI elements. (Maybe doesnt happen anymore??)
+
         if (Physics.Raycast(ray, out RaycastHit hit, 1000f, _raycastLayerMask, QueryTriggerInteraction.Ignore)) // Arbitrary distance thats far enough, Mathf.Infinity seems excessive for no reason.
         {
             if (_printDebug) Debug.Log("Hit something " + hit.transform.parent.gameObject.name);
@@ -85,6 +93,7 @@ public class ClickToSpawnManager : MonoBehaviour
             {
                 if (tile.GetTileType() == Tile.TileType.Build)
                 {
+                    BuildableTile buildableTile = hit.transform.parent.GetComponent<BuildableTile>();
 
                     switch (m_currentClickMode)
                     {
@@ -101,6 +110,45 @@ public class ClickToSpawnManager : MonoBehaviour
                             }
                             break;
 
+                        case ClickMode.Crystal:
+                            if (buildableTile.HasObjectAbove)
+                                return;
+                            if (ResourceManager.Instance.CanPurchase(crystal.woodCost, crystal.stoneCost))
+                            {
+                                buildableTile.SpawnCrystalAbove();
+                            }
+                            else
+                            {
+                                UiManager.Instance.NotEnoughResources();
+                            }
+                            break;
+
+                        case ClickMode.Missel:
+                            if (buildableTile.HasObjectAbove)
+                                return;
+                            if (ResourceManager.Instance.CanPurchase(missel.woodCost, missel.stoneCost))
+                            {
+                                buildableTile.SpawnMisselAbove();
+                            }
+                            else
+                            {
+                                UiManager.Instance.NotEnoughResources();
+                            }
+                            break;
+
+                        case ClickMode.SandGlass:
+                            if (buildableTile.HasObjectAbove)
+                                return;
+                            if (ResourceManager.Instance.CanPurchase(sendGlass.woodCost, sendGlass.stoneCost))
+                            {
+                                buildableTile.SpawnSendGlassAbove();
+                            }
+                            else
+                            {
+                                UiManager.Instance.NotEnoughResources();
+                            }
+                            break;
+
                         case ClickMode.Resource:
                             if (hit.transform.parent.GetComponent<BuildableTile>().HasObjectAbove)
                                 return;
@@ -113,9 +161,11 @@ public class ClickToSpawnManager : MonoBehaviour
                                 UiManager.Instance.NotEnoughResources(); // Call the UI function to show "Not enough resources" message.
                             }
                             break;
+
                         case ClickMode.Delete:
                             hit.transform.parent.GetComponent<BuildableTile>().DeleteCurrentTower();
                             break;
+
                         case ClickMode.Upgrade:
                             if (hit.transform.parent.GetComponent<BuildableTile>().IsClear)
                                 return;
@@ -128,6 +178,7 @@ public class ClickToSpawnManager : MonoBehaviour
                                 UiManager.Instance.NotEnoughResources(); // Call the UI function to show "Not enough resources" message.
                             }
                             break;
+
                         case ClickMode.None:
                         default:
                             break;
@@ -156,6 +207,21 @@ public class ClickToSpawnManager : MonoBehaviour
     public void OnBallistaButtonPress()
     {
         m_currentClickMode = ClickMode.Ballista;
+    }
+
+    public void OnCrystalButtonPress()
+    {
+        m_currentClickMode = ClickMode.Crystal;
+    }
+
+    public void OnMisselButtonPress()
+    {
+        m_currentClickMode = ClickMode.Missel;
+    }
+
+    public void OnSandGlassButtonPress()
+    {
+        m_currentClickMode = ClickMode.SandGlass;
     }
 
     public void OnResourceButtonPress()
