@@ -66,12 +66,12 @@ public class BuildableTile : MonoBehaviour
         );
     }
 
-    public void SpawnMisselAbove()
+    public void SpawnMissileAbove()
     {
         // Guard clauses
-        if (ClickToSpawnManager.instance.missel.prefabLevel1 == null)
+        if (ClickToSpawnManager.instance.missile.prefabLevel1 == null)
         {
-            Debug.LogWarning("Missel Prefab not found");
+            Debug.LogWarning("Missile Prefab not found");
             return;
         }
         if (m_tileComponent.GetTileType() != Tile.TileType.Build)
@@ -79,11 +79,11 @@ public class BuildableTile : MonoBehaviour
         if (m_spawnableCurrentlyAbove != null)
             return;
 
-        // Spawn Missel
+        // Spawn Missile
         m_spawnableCurrentlyAbove = Instantiate(
-            ClickToSpawnManager.instance.missel.prefabLevel1,
-            m_tileComponent.gameObject.transform.position + new Vector3(0, ClickToSpawnManager.instance.missel.verticalOffset, 0),
-            ClickToSpawnManager.instance.missel.prefabLevel1.transform.rotation,
+            ClickToSpawnManager.instance.missile.prefabLevel1,
+            m_tileComponent.gameObject.transform.position + new Vector3(0, ClickToSpawnManager.instance.missile.verticalOffset, 0),
+            ClickToSpawnManager.instance.missile.prefabLevel1.transform.rotation,
             this.transform
         );
     }
@@ -188,17 +188,17 @@ public class BuildableTile : MonoBehaviour
         if (m_spawnableCurrentlyAbove.name.Contains("GB_Pyro_1"))
         {
             DeleteCurrentTower();
-            m_spawnableCurrentlyAbove = Instantiate(ClickToSpawnManager.instance.missel.prefabLevel2,
-                                            m_tileComponent.gameObject.transform.position + new Vector3(0, ClickToSpawnManager.instance.missel.verticalOffset, 0),
-                                            ClickToSpawnManager.instance.missel.prefabLevel2.transform.rotation,
+            m_spawnableCurrentlyAbove = Instantiate(ClickToSpawnManager.instance.missile.prefabLevel2,
+                                            m_tileComponent.gameObject.transform.position + new Vector3(0, ClickToSpawnManager.instance.missile.verticalOffset, 0),
+                                            ClickToSpawnManager.instance.missile.prefabLevel2.transform.rotation,
                                             this.transform);
         }
         else if (m_spawnableCurrentlyAbove.name.Contains("GB_Pyro_2"))
         {
             DeleteCurrentTower();
-            m_spawnableCurrentlyAbove = Instantiate(ClickToSpawnManager.instance.missel.prefabLevel3,
-                                            m_tileComponent.gameObject.transform.position + new Vector3(0, ClickToSpawnManager.instance.missel.verticalOffset, 0),
-                                            ClickToSpawnManager.instance.missel.prefabLevel3.transform.rotation,
+            m_spawnableCurrentlyAbove = Instantiate(ClickToSpawnManager.instance.missile.prefabLevel3,
+                                            m_tileComponent.gameObject.transform.position + new Vector3(0, ClickToSpawnManager.instance.missile.verticalOffset, 0),
+                                            ClickToSpawnManager.instance.missile.prefabLevel3.transform.rotation,
                                             this.transform);
         }
 

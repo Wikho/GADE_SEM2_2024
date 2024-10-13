@@ -24,8 +24,8 @@ public class ClickToSpawnManager : MonoBehaviour
     {
         None = 0,
         Ballista,
-        Crystal,    
-        Missel,     
+        Crystal,
+        Missile,
         SandGlass,
         Resource,
         Delete,
@@ -35,7 +35,7 @@ public class ClickToSpawnManager : MonoBehaviour
     // Defined here to be accessed by the BuildableTile component, not crazy extensible, 
     public SpawnableObject ballista;
     public SpawnableObject crystal;
-    public SpawnableObject missel;
+    public SpawnableObject missile;
     public SpawnableObject sendGlass;
     public SpawnableObject resource;
 
@@ -51,7 +51,7 @@ public class ClickToSpawnManager : MonoBehaviour
     [Header("Upgrade Cost")]
     [SerializeField] private int upgradeWoodCost;
     [SerializeField] private int upgradeStoneCost;
-    
+
 
     void Awake()
     {
@@ -87,7 +87,7 @@ public class ClickToSpawnManager : MonoBehaviour
         if (_printDebug) Debug.Log("Casting a ray rn");
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         // Is this technically mixing new and old input system? yes. Is it much much cleaner than getting the mouse pos with new input system, also yes.
-        
+
 
         if (Physics.Raycast(ray, out RaycastHit hit, 1000f, _raycastLayerMask, QueryTriggerInteraction.Ignore)) // Arbitrary distance thats far enough, Mathf.Infinity seems excessive for no reason.
         {
@@ -128,12 +128,12 @@ public class ClickToSpawnManager : MonoBehaviour
                             }
                             break;
 
-                        case ClickMode.Missel:
+                        case ClickMode.Missile:
                             if (buildableTile.HasObjectAbove)
                                 return;
-                            if (ResourceManager.Instance.CanPurchase(missel.woodCost, missel.stoneCost))
+                            if (ResourceManager.Instance.CanPurchase(missile.woodCost, missile.stoneCost))
                             {
-                                buildableTile.SpawnMisselAbove();
+                                buildableTile.SpawnMissileAbove();
                                 totalBuildingsBuild++;
                             }
                             else
@@ -178,6 +178,8 @@ public class ClickToSpawnManager : MonoBehaviour
                         case ClickMode.Upgrade:
                             if (hit.transform.parent.GetComponent<BuildableTile>().IsClear)
                                 return;
+                            if (hit.transform.parent.GetComponent<BuildableTile>().gameObject.transform.GetChild(2).name.Contains("3"))
+                                return; // Level 3 already. Do not upgrade it
                             if (ResourceManager.Instance.CanPurchase(upgradeWoodCost, upgradeStoneCost))
                             {
                                 hit.transform.parent.GetComponent<BuildableTile>().UpgradeTower();
@@ -224,9 +226,9 @@ public class ClickToSpawnManager : MonoBehaviour
         m_currentClickMode = ClickMode.Crystal;
     }
 
-    public void OnMisselButtonPress()
+    public void OnMissileButtonPress()
     {
-        m_currentClickMode = ClickMode.Missel;
+        m_currentClickMode = ClickMode.Missile;
     }
 
     public void OnSandGlassButtonPress()
