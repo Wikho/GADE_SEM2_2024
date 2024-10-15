@@ -155,8 +155,8 @@ MonoBehaviour:
   maxWoodAmount: 7
   generateStone: 1
   stoneGenerationInterval: 7
-  minStoneAmount: 1
-  maxStoneAmount: 7
+  minStoneAmount: 2
+  maxStoneAmount: 9
   woodUI: {fileID: 4462125397419411854}
   stoneUI: {fileID: 487300095844547384}
   woodText: {fileID: 8386175800402471636}

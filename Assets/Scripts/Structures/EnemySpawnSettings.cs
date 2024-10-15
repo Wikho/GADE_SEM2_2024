@@ -56,6 +56,7 @@ public class EnemySpawnSettings : MonoBehaviour
     [Header("Round Settings")]
     [SerializeField] private float timeBetweenRounds = 10f;
     private Coroutine roundTimerCoroutine;
+     public bool waveHaveStarted = false;
 
     private Transform enemySpawnParent;
     [SerializeField] private List<EnemySpawnPoint> enemySpawnPoints = new List<EnemySpawnPoint>();
@@ -104,6 +105,8 @@ public class EnemySpawnSettings : MonoBehaviour
 
     private void StartNextRound()
     {
+        waveHaveStarted = true;
+
         UiManager.Instance.DiableSkipWave();
 
         currentWave++;
@@ -165,6 +168,8 @@ public class EnemySpawnSettings : MonoBehaviour
     {
         if (roundTimerCoroutine != null)
         {
+            ResourceManager.Instance.AddWood(5);
+            ResourceManager.Instance.AddStone(5);
             StopCoroutine(roundTimerCoroutine);
             StartNextRound();
         }

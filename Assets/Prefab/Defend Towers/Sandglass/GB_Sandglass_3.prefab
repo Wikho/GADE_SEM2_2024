@@ -358,7 +358,7 @@ GameObject:
   - component: {fileID: 8825943427037618840}
   m_Layer: 0
   m_Name: GB_Sandglass_3
-  m_TagString: Untagged
+  m_TagString: Attackable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -441,9 +441,9 @@ MonoBehaviour:
   currentHealth: 600
   maxHealth: 600
   canRegen: 1
-  regenRate: 1
-  regenAmount: 5
-  regenDelay: 5
+  regenRate: 2
+  regenAmount: 7
+  regenDelay: 3
   isRegenerating: 0
   timeSinceLastDamage: 0
 --- !u!114 &6942220496083399296

@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 5161350646921139040}
   m_Layer: 0
   m_Name: GB_Crystal_2
-  m_TagString: Untagged
+  m_TagString: Attackable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -127,9 +127,9 @@ MonoBehaviour:
   currentHealth: 450
   maxHealth: 450
   canRegen: 1
-  regenRate: 1
-  regenAmount: 5
-  regenDelay: 5
+  regenRate: 1.5
+  regenAmount: 6
+  regenDelay: 4
   isRegenerating: 0
   timeSinceLastDamage: 0
 --- !u!114 &3229811701454837329

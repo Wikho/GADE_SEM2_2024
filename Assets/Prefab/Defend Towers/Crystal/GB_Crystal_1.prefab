@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 7920282048385210039}
   m_Layer: 0
   m_Name: GB_Crystal_1
-  m_TagString: Untagged
+  m_TagString: Attackable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -105,7 +105,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 0.5
-  fireRate: 0.7
+  fireRate: 1
   range: 11
   pivotPoint: {fileID: 4231576258298876}
   bulletPrefab: {fileID: 1607217979833398, guid: 1513fb808c98dfa4b85a0eea8d56aed1,

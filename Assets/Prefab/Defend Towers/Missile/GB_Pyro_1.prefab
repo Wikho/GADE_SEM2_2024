@@ -9889,7 +9889,7 @@ GameObject:
   - component: {fileID: 988494554027483010}
   m_Layer: 0
   m_Name: GB_Pyro_1
-  m_TagString: Untagged
+  m_TagString: Attackable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

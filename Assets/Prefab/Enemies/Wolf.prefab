@@ -260,7 +260,7 @@ SkinnedMeshRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 100014}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 2
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
   m_StaticShadowCaster: 0
@@ -2424,7 +2424,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 10
   currentHealth: 10
-  speed: 1.5
+  speed: 1.7
   damage: {fileID: 5621375096798331459}
   TestLocation: {fileID: 0}
 --- !u!114 &3408307446319920625

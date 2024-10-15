@@ -192,9 +192,9 @@ MonoBehaviour:
   currentHealth: 800
   maxHealth: 800
   canRegen: 1
-  regenRate: 1
-  regenAmount: 5
-  regenDelay: 5
+  regenRate: 2
+  regenAmount: 7
+  regenDelay: 3
   isRegenerating: 0
   timeSinceLastDamage: 0
 --- !u!135 &8816640310669109016

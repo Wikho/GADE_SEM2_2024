@@ -64,7 +64,7 @@ public class HealthComponent : MonoBehaviour
         {
             StopCoroutine(regenCoroutine); 
         }
-        Destroy(gameObject);
+        Destroy(gameObject,1f);
     }
 
     #region Regen Health

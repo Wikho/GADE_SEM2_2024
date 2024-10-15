@@ -5009,7 +5009,7 @@ GameObject:
   - component: {fileID: 7226758783430876273}
   m_Layer: 0
   m_Name: GB_Pyro_2
-  m_TagString: Untagged
+  m_TagString: Attackable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5047,7 +5047,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 3
-  fireRate: 1.8
+  fireRate: 1.4
   range: 8
   pivotPoint: {fileID: 4914845434195082}
   bulletPrefab: {fileID: 1181794290910964, guid: 4392a4ac0803fc341b53fb6e1a668f55,
@@ -5069,9 +5069,9 @@ MonoBehaviour:
   currentHealth: 400
   maxHealth: 400
   canRegen: 1
-  regenRate: 1
-  regenAmount: 5
-  regenDelay: 5
+  regenRate: 1.5
+  regenAmount: 6
+  regenDelay: 4
   isRegenerating: 0
   timeSinceLastDamage: 0
 --- !u!114 &6744582944038848688

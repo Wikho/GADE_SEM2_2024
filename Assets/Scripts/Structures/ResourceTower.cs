@@ -54,10 +54,14 @@ public class ResourceTower : MonoBehaviour
         while (generateWood)
         {
             yield return new WaitForSeconds(woodGenerationInterval);
-            int woodAmount = Random.Range(minWoodAmount, maxWoodAmount + 1);
-            ResourceManager.Instance.AddWood(woodAmount);
-            UpdateUI(woodUI, woodText, woodAmount);
-            UiManager.Instance.UpdateUiWood();
+
+            if (EnemySpawnSettings.Instance.waveHaveStarted)
+            {
+                int woodAmount = Random.Range(minWoodAmount, maxWoodAmount + 1);
+                ResourceManager.Instance.AddWood(woodAmount);
+                UpdateUI(woodUI, woodText, woodAmount);
+                UiManager.Instance.UpdateUiWood();
+            }
         }
     }
 
@@ -66,10 +70,14 @@ public class ResourceTower : MonoBehaviour
         while (generateStone)
         {
             yield return new WaitForSeconds(stoneGenerationInterval);
-            int stoneAmount = Random.Range(minStoneAmount, maxStoneAmount + 1);
-            ResourceManager.Instance.AddStone(stoneAmount);
-            UpdateUI(stoneUI, stoneText, stoneAmount);
-            UiManager.Instance.UpdateUiStone();
+
+            if (EnemySpawnSettings.Instance.waveHaveStarted)
+            {
+                int stoneAmount = Random.Range(minStoneAmount, maxStoneAmount + 1);
+                ResourceManager.Instance.AddStone(stoneAmount);
+                UpdateUI(stoneUI, stoneText, stoneAmount);
+                UiManager.Instance.UpdateUiStone();
+            }
         }
     }
 

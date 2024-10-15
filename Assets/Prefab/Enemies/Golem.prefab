@@ -1688,8 +1688,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 25
   currentHealth: 25
-  speed: 0.5
-  damage: {fileID: 0}
+  speed: 0.6
+  damage: {fileID: 1818513856733119305}
   TestLocation: {fileID: 0}
 --- !u!114 &2897989840625936280
 MonoBehaviour:
@@ -1776,7 +1776,7 @@ SkinnedMeshRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 100100}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 2
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
   m_StaticShadowCaster: 0
