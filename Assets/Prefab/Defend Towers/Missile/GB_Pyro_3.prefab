@@ -131,6 +131,7 @@ GameObject:
   - component: {fileID: 4288476513109786}
   - component: {fileID: 33976238382302192}
   - component: {fileID: 23300720362678822}
+  - component: {fileID: 4614294595420777272}
   m_Layer: 0
   m_Name: GB_Pyro3
   m_TagString: Untagged
@@ -205,6 +206,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &4614294595420777272
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1053987416056848}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bde8976972891514a9cbdd6b6ceea43f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _renderer: {fileID: 23300720362678822}
+  healthComponent: {fileID: 120587682252963709}
 --- !u!1 &1132290119541140
 GameObject:
   m_ObjectHideFlags: 0

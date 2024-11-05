@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4035261314085358}
   - component: {fileID: 33139617764684318}
   - component: {fileID: 23477882875321378}
+  - component: {fileID: 3169936187446730590}
   m_Layer: 0
   m_Name: GB_sandglass_pivot3
   m_TagString: Untagged
@@ -87,6 +88,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &3169936187446730590
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1367284630690142}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bde8976972891514a9cbdd6b6ceea43f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _renderer: {fileID: 23477882875321378}
+  healthComponent: {fileID: 3383679216631280325}
 --- !u!1 &1400361980493012
 GameObject:
   m_ObjectHideFlags: 0
@@ -183,6 +198,7 @@ GameObject:
   - component: {fileID: 4458661000298010}
   - component: {fileID: 33499512981773738}
   - component: {fileID: 23370142453018688}
+  - component: {fileID: 621539483142545643}
   m_Layer: 0
   m_Name: GB_sandglass_main3
   m_TagString: Untagged
@@ -257,6 +273,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &621539483142545643
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1534440275837188}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bde8976972891514a9cbdd6b6ceea43f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _renderer: {fileID: 23370142453018688}
+  healthComponent: {fileID: 3383679216631280325}
 --- !u!1 &1631051042300094
 GameObject:
   m_ObjectHideFlags: 0

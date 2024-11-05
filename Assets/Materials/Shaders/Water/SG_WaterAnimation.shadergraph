@@ -1003,7 +1003,7 @@
     "m_Group": {
         "m_Id": ""
     },
-    "m_Name": "GerstnerWave",
+    "m_Name": "SSG_GerstnerWave",
     "m_DrawState": {
         "m_Expanded": true,
         "m_Position": {
@@ -4506,7 +4506,7 @@
     "m_Group": {
         "m_Id": ""
     },
-    "m_Name": "GerstnerWave",
+    "m_Name": "SSG_GerstnerWave",
     "m_DrawState": {
         "m_Expanded": true,
         "m_Position": {
@@ -5068,7 +5068,7 @@
     "m_Group": {
         "m_Id": ""
     },
-    "m_Name": "GerstnerWave",
+    "m_Name": "SSG_GerstnerWave",
     "m_DrawState": {
         "m_Expanded": true,
         "m_Position": {

@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 4688694588754729838}
   - component: {fileID: 3618049541955209963}
   - component: {fileID: 7920282048385210039}
+  - component: {fileID: 325539796200161231}
   m_Layer: 0
   m_Name: GB_Crystal_1
   m_TagString: Attackable
@@ -127,7 +128,7 @@ MonoBehaviour:
   currentHealth: 380
   maxHealth: 380
   canRegen: 1
-  regenRate: 1
+  regenRate: 0
   regenAmount: 5
   regenDelay: 5
   isRegenerating: 0
@@ -158,6 +159,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3c6e78458d8247499997f625ebb1bb5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &325539796200161231
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1741313696085770}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bde8976972891514a9cbdd6b6ceea43f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _renderer: {fileID: 23008460107366940}
+  healthComponent: {fileID: 4688694588754729838}
 --- !u!1 &1841433443981248
 GameObject:
   m_ObjectHideFlags: 0

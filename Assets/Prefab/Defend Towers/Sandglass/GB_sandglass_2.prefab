@@ -4944,7 +4944,7 @@ GameObject:
   - component: {fileID: 4425185209038287405}
   - component: {fileID: 3626213155622723094}
   m_Layer: 0
-  m_Name: GB_Sandglass_2
+  m_Name: GB_sandglass_2
   m_TagString: Attackable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5070,6 +5070,7 @@ GameObject:
   - component: {fileID: 4720777439533420}
   - component: {fileID: 33556250085101328}
   - component: {fileID: 23006647385089116}
+  - component: {fileID: 6620692854026778551}
   m_Layer: 0
   m_Name: GB_sandglass_main2
   m_TagString: Untagged
@@ -5144,6 +5145,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &6620692854026778551
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1536754110866652}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bde8976972891514a9cbdd6b6ceea43f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _renderer: {fileID: 23006647385089116}
+  healthComponent: {fileID: 3176039821994296519}
 --- !u!1 &1959546413056106
 GameObject:
   m_ObjectHideFlags: 0
@@ -5155,6 +5170,7 @@ GameObject:
   - component: {fileID: 4987699030288164}
   - component: {fileID: 33678286708573966}
   - component: {fileID: 23401842550200978}
+  - component: {fileID: 3243333260714745828}
   m_Layer: 0
   m_Name: GB_sandglass_pivot2
   m_TagString: Untagged
@@ -5231,6 +5247,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &3243333260714745828
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1959546413056106}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bde8976972891514a9cbdd6b6ceea43f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _renderer: {fileID: 23401842550200978}
+  healthComponent: {fileID: 3176039821994296519}
 --- !u!1 &1992800228991124
 GameObject:
   m_ObjectHideFlags: 0

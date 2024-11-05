@@ -44,6 +44,7 @@ GameObject:
   - component: {fileID: 4766710311118812}
   - component: {fileID: 33002072016969602}
   - component: {fileID: 23035024785864050}
+  - component: {fileID: 3778808653778973369}
   m_Layer: 0
   m_Name: GB_ballista3
   m_TagString: Untagged
@@ -118,6 +119,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &3778808653778973369
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1094163942866460}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bde8976972891514a9cbdd6b6ceea43f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _renderer: {fileID: 23035024785864050}
+  healthComponent: {fileID: -3016354156893480072}
 --- !u!1 &1205523137785642
 GameObject:
   m_ObjectHideFlags: 0
@@ -193,7 +208,7 @@ MonoBehaviour:
   maxHealth: 800
   canRegen: 1
   regenRate: 2
-  regenAmount: 7
+  regenAmount: 0
   regenDelay: 3
   isRegenerating: 0
   timeSinceLastDamage: 0
@@ -255,6 +270,7 @@ GameObject:
   - component: {fileID: 4809389944688018}
   - component: {fileID: 33256228354417842}
   - component: {fileID: 23695915455389808}
+  - component: {fileID: 1606557610631863855}
   m_Layer: 0
   m_Name: GB_ballista_pivot3
   m_TagString: Untagged
@@ -330,6 +346,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &1606557610631863855
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1537118464523326}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bde8976972891514a9cbdd6b6ceea43f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _renderer: {fileID: 23695915455389808}
+  healthComponent: {fileID: -3016354156893480072}
 --- !u!1 &1950696167283504
 GameObject:
   m_ObjectHideFlags: 0

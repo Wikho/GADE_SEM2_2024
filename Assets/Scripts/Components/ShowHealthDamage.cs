@@ -2,37 +2,46 @@ using UnityEngine;
 
 public class ShowHealthDamage : MonoBehaviour
 {
-    private Renderer _renderer;
-    public Material material;
-    private HealthComponent healthComponent;
+    public Renderer _renderer;
+    private MaterialPropertyBlock propertyBlock;
+    public HealthComponent healthComponent;
 
     // The name of the ShaderGraph property controlling texture blending
     private static readonly int TextureBlendingAmountID = Shader.PropertyToID("_TextureBlendingAmount");
 
     void Start()
     {
-        if (_renderer == null)
+        // Initialize the MaterialPropertyBlock
+        propertyBlock = new MaterialPropertyBlock();
+
+        if(healthComponent == null)
         {
-            Debug.Log("Need material assigned at script.");
+            try
+            {
+                // Try to get the HealthComponent
+                healthComponent = GetComponent<HealthComponent>();
+            }
+            catch
+            {
+
+            }
         }
 
-        // Try to get the HealthComponent
-        healthComponent = GetComponent<HealthComponent>();
     }
 
     void Update()
     {
         // Check if HealthComponent is null and exit if it is
-        if (healthComponent == null || material == null) return;
+        if (healthComponent == null) return;
 
-        // Get the health value and convert it to a 0 to 1 range
-        float healthNormalized = Mathf.Clamp01(healthComponent.Health / healthComponent.MaxHealth); 
-
-         // Invert the health normalized value so 1 is damage, and 0 is full health
+        // Get the health value and convert it to a 0 to 1 range, inverted
+        float healthNormalized = Mathf.Clamp01(healthComponent.Health / 100f);
         float invertedHealthNormalized = 1 - healthNormalized;
 
+        // Set the shader's _TextureBlendingAmount to the inverted health value
+        propertyBlock.SetFloat(TextureBlendingAmountID, invertedHealthNormalized);
 
-        // Set the shader's _TextureBlendingAmount to the normalized health value
-        material.SetFloat(TextureBlendingAmountID, invertedHealthNormalized);
+        // Apply the MaterialPropertyBlock to this specific renderer
+        _renderer.SetPropertyBlock(propertyBlock);
     }
 }

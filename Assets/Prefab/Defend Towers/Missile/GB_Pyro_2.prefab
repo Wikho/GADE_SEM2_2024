@@ -4856,6 +4856,7 @@ GameObject:
   - component: {fileID: 4738099574913834}
   - component: {fileID: 33300396398002648}
   - component: {fileID: 23192755911310678}
+  - component: {fileID: 5036984259372832942}
   m_Layer: 0
   m_Name: GB_Pyro_main_2
   m_TagString: Untagged
@@ -4930,6 +4931,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &5036984259372832942
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1089377939734638}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bde8976972891514a9cbdd6b6ceea43f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _renderer: {fileID: 23192755911310678}
+  healthComponent: {fileID: 3411561364977742616}
 --- !u!1 &1089966447530246
 GameObject:
   m_ObjectHideFlags: 0
@@ -9988,6 +10003,7 @@ GameObject:
   - component: {fileID: 4914845434195082}
   - component: {fileID: 33681981772430364}
   - component: {fileID: 23625022198915880}
+  - component: {fileID: 4421907575201299833}
   m_Layer: 0
   m_Name: GB_Pyro_pivot2
   m_TagString: Untagged
@@ -10065,6 +10081,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &4421907575201299833
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1591026088235990}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bde8976972891514a9cbdd6b6ceea43f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _renderer: {fileID: 23625022198915880}
+  healthComponent: {fileID: 3411561364977742616}
 --- !u!1 &1850821403579812
 GameObject:
   m_ObjectHideFlags: 0

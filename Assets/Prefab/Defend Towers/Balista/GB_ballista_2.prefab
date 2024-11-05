@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4367912136884390}
   - component: {fileID: 33834556378851014}
   - component: {fileID: 23299872137761724}
+  - component: {fileID: 649622137355347267}
   m_Layer: 0
   m_Name: GB_ballista_pivot2
   m_TagString: Untagged
@@ -87,6 +88,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &649622137355347267
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1078663934060136}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bde8976972891514a9cbdd6b6ceea43f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _renderer: {fileID: 23299872137761724}
+  healthComponent: {fileID: 8788460129923602800}
 --- !u!1 &1179696971934244
 GameObject:
   m_ObjectHideFlags: 0
@@ -193,7 +208,7 @@ MonoBehaviour:
   maxHealth: 550
   canRegen: 1
   regenRate: 1.5
-  regenAmount: 6
+  regenAmount: 0
   regenDelay: 4
   isRegenerating: 0
   timeSinceLastDamage: 0
@@ -288,6 +303,7 @@ GameObject:
   - component: {fileID: 4215885046134930}
   - component: {fileID: 33834425864920562}
   - component: {fileID: 23870202292503838}
+  - component: {fileID: 375688490059584964}
   m_Layer: 0
   m_Name: GB_ballista2
   m_TagString: Untagged
@@ -362,6 +378,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &375688490059584964
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1739028042257220}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bde8976972891514a9cbdd6b6ceea43f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _renderer: {fileID: 23870202292503838}
+  healthComponent: {fileID: 8788460129923602800}
 --- !u!1 &1991797423425198
 GameObject:
   m_ObjectHideFlags: 0
