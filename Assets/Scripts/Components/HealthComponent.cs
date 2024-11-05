@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 // Made to be very flexible, so don't worry about the items with 0 references, that's because they'll be useful down the line.

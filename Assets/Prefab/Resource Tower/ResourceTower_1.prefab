@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 8246625102815702642}
   - component: {fileID: 507772917507466994}
   - component: {fileID: -2067895119516217354}
+  - component: {fileID: 1934470863265470249}
   m_Layer: 0
   m_Name: ResourceTower_1
   m_TagString: Untagged
@@ -161,6 +162,19 @@ MonoBehaviour:
   stoneUI: {fileID: 6507407205514647996}
   woodText: {fileID: 1038297006836703156}
   stoneText: {fileID: 7809654700817714975}
+--- !u!114 &1934470863265470249
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1130968251454298}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bde8976972891514a9cbdd6b6ceea43f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  material: {fileID: 2100000, guid: c717fb89e24ff384785039c0f1169eee, type: 2}
 --- !u!1 &406206192338915128
 GameObject:
   m_ObjectHideFlags: 0

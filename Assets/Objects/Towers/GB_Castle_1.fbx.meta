@@ -1,60 +1,158 @@
 fileFormatVersion: 2
 guid: 708004461e8265247871da906a43598b
 ModelImporter:
-  serializedVersion: 22
-  fileIDToRecycleName:
-    100000: cluster1Handle
-    100002: cluster2Handle
-    100004: cluster3Handle
-    100006: cluster4Handle
-    100008: Door_left
-    100010: Door_right
-    100012: Flag_mesh_1
-    100014: Flags_joints
-    100016: GB_castle1
-    100018: //RootNode
-    100020: GB_castle_tube
-    100022: ikHandle1
-    100024: joint1 (2)
-    100026: joint2 (2)
-    100028: joint3 (2)
-    100030: joint4 (2)
-    400000: cluster1Handle
-    400002: cluster2Handle
-    400004: cluster3Handle
-    400006: cluster4Handle
-    400008: Door_left
-    400010: Door_right
-    400012: Flag_mesh_1
-    400014: Flags_joints
-    400016: GB_castle1
-    400018: //RootNode
-    400020: GB_castle_tube
-    400022: ikHandle1
-    400024: joint1 (2)
-    400026: joint2 (2)
-    400028: joint3 (2)
-    400030: joint4 (2)
-    2100000: No Name
-    2300000: Door_left
-    2300002: Door_right
-    2300004: GB_castle1
-    2300006: GB_castle_tube
-    3300000: Door_left
-    3300002: Door_right
-    3300004: GB_castle1
-    3300006: GB_castle_tube
-    4300000: Flag_mesh_1
-    4300002: Door_left
-    4300004: GB_castle1
-    4300006: GB_castle_tube
-    4300008: Door_right
-    7400000: Take 001
-    9500000: //RootNode
-    13700000: Flag_mesh_1
+  serializedVersion: 22200
+  internalIDToNameTable:
+  - first:
+      1: 100000
+    second: cluster1Handle
+  - first:
+      1: 100002
+    second: cluster2Handle
+  - first:
+      1: 100004
+    second: cluster3Handle
+  - first:
+      1: 100006
+    second: cluster4Handle
+  - first:
+      1: 100008
+    second: Door_left
+  - first:
+      1: 100010
+    second: Door_right
+  - first:
+      1: 100012
+    second: Flag_mesh_1
+  - first:
+      1: 100014
+    second: Flags_joints
+  - first:
+      1: 100016
+    second: GB_castle1
+  - first:
+      1: 100018
+    second: //RootNode
+  - first:
+      1: 100020
+    second: GB_castle_tube
+  - first:
+      1: 100022
+    second: ikHandle1
+  - first:
+      1: 100024
+    second: joint1 (2)
+  - first:
+      1: 100026
+    second: joint2 (2)
+  - first:
+      1: 100028
+    second: joint3 (2)
+  - first:
+      1: 100030
+    second: joint4 (2)
+  - first:
+      4: 400000
+    second: cluster1Handle
+  - first:
+      4: 400002
+    second: cluster2Handle
+  - first:
+      4: 400004
+    second: cluster3Handle
+  - first:
+      4: 400006
+    second: cluster4Handle
+  - first:
+      4: 400008
+    second: Door_left
+  - first:
+      4: 400010
+    second: Door_right
+  - first:
+      4: 400012
+    second: Flag_mesh_1
+  - first:
+      4: 400014
+    second: Flags_joints
+  - first:
+      4: 400016
+    second: GB_castle1
+  - first:
+      4: 400018
+    second: //RootNode
+  - first:
+      4: 400020
+    second: GB_castle_tube
+  - first:
+      4: 400022
+    second: ikHandle1
+  - first:
+      4: 400024
+    second: joint1 (2)
+  - first:
+      4: 400026
+    second: joint2 (2)
+  - first:
+      4: 400028
+    second: joint3 (2)
+  - first:
+      4: 400030
+    second: joint4 (2)
+  - first:
+      21: 2100000
+    second: No Name
+  - first:
+      23: 2300000
+    second: Door_left
+  - first:
+      23: 2300002
+    second: Door_right
+  - first:
+      23: 2300004
+    second: GB_castle1
+  - first:
+      23: 2300006
+    second: GB_castle_tube
+  - first:
+      33: 3300000
+    second: Door_left
+  - first:
+      33: 3300002
+    second: Door_right
+  - first:
+      33: 3300004
+    second: GB_castle1
+  - first:
+      33: 3300006
+    second: GB_castle_tube
+  - first:
+      43: 4300000
+    second: Flag_mesh_1
+  - first:
+      43: 4300002
+    second: Door_left
+  - first:
+      43: 4300004
+    second: GB_castle1
+  - first:
+      43: 4300006
+    second: GB_castle_tube
+  - first:
+      43: 4300008
+    second: Door_right
+  - first:
+      74: 7400000
+    second: Take 001
+  - first:
+      95: 9500000
+    second: //RootNode
+  - first:
+      137: 13700000
+    second: Flag_mesh_1
   externalObjects: {}
   materials:
-    importMaterials: 1
+    materialImportMode: 0
     materialName: 0
     materialSearch: 1
     materialLocation: 1
@@ -63,9 +161,8 @@ ModelImporter:
     bakeSimulation: 0
     resampleCurves: 1
     optimizeGameObjects: 0
+    removeConstantScaleCurves: 0
     motionNodeName: 
-    rigImportErrors: 
-    rigImportWarnings: 
     animationImportErrors: 
     animationImportWarnings: 
     animationRetargetingWarnings: 
@@ -83,6 +180,7 @@ ModelImporter:
     - serializedVersion: 16
       name: Take 001
       takeName: Take 001
+      internalID: 0
       firstFrame: 0
       lastFrame: 40
       wrapMode: 0
@@ -114,32 +212,49 @@ ModelImporter:
     globalScale: 1
     meshCompression: 0
     addColliders: 0
+    useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
+    importPhysicalCameras: 0
     importVisibility: 1
     importBlendShapes: 1
     importCameras: 1
     importLights: 1
+    nodeNameCollisionStrategy: 0
+    fileIdsGeneration: 1
     swapUVChannels: 0
     generateSecondaryUV: 0
     useFileUnits: 1
-    optimizeMeshForGPU: 1
     keepQuads: 0
     weldVertices: 1
+    bakeAxisConversion: 0
     preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    optimizeBones: 1
+    meshOptimizationFlags: -1
     indexFormat: 0
     secondaryUVAngleDistortion: 8
     secondaryUVAreaDistortion: 15.000001
     secondaryUVHardAngle: 88
+    secondaryUVMarginMethod: 0
+    secondaryUVMinLightmapResolution: 40
+    secondaryUVMinObjectScale: 1
     secondaryUVPackMargin: 4
     useFileScale: 1
+    strictVertexDataChecks: 0
   tangentSpace:
     normalSmoothAngle: 60
     normalImportMode: 0
     tangentImportMode: 3
     normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 1
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  referencedClips: []
   importAnimation: 1
-  copyAvatar: 0
   humanDescription:
-    serializedVersion: 2
+    serializedVersion: 3
     human: []
     skeleton: []
     armTwist: 0.5
@@ -149,14 +264,19 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
+    globalScale: 1
     rootMotionBoneName: 
-    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
     hasTranslationDoF: 0
     hasExtraRoot: 0
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
+  autoGenerateAvatarMappingIfUnspecified: 1
   animationType: 2
   humanoidOversampling: 1
+  avatarSetup: 1
+  addHumanoidExtraRootOnlyWhenUsingAvatar: 0
+  importBlendShapeDeformPercent: 0
+  remapMaterialsIfMaterialImportModeIsNone: 1
   additionalBone: 0
   userData: 
   assetBundleName: 
