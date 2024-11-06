@@ -7,14 +7,22 @@ public class ResourceManager : MonoBehaviour
 
     [SerializeField] private int wood = 0;
     [SerializeField] private int stone = 0;
-
-
+    
     #endregion
 
     #region Unity Methods
-    private void Awake()
+    void Awake()
     {
-        Singleton();
+        if (Instance == null)
+        {
+            Instance = this;
+            // DontDestroyOnLoad(this);
+        }
+        else
+        {
+            Destroy(this.gameObject);
+            return;
+        }
     }
 
     private void Start()
@@ -69,21 +77,5 @@ public class ResourceManager : MonoBehaviour
     public void RemoveStone(int amount) { stone -= amount; }
 
 
-    #endregion
-
-    #region Singleton
-    private void Singleton()
-    {
-        if (Instance != null && Instance != this)
-        {
-            Destroy(gameObject);
-            Debug.LogWarning("Another instance of ResourceManager was destroyed on creation!");
-            return;
-        }
-
-        Instance = this;
-
-        DontDestroyOnLoad(gameObject);
-    }
     #endregion
 }

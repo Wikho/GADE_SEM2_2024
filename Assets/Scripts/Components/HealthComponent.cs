@@ -5,8 +5,8 @@ using UnityEngine;
 public class HealthComponent : MonoBehaviour
 {
     #region Variable
-    [SerializeField] private float currentHealth = 0;
-    [SerializeField] private float maxHealth = 0;
+    public float currentHealth = 0;
+    public float maxHealth = 0;
 
     [Header("Health Regeneration Settings")]
     [SerializeField] private bool canRegen = true; //Can regenerate health
