@@ -29,13 +29,13 @@ public class ShowHealthDamage : MonoBehaviour
 
     }
 
-    void Update()
+    void FixedUpdate()
     {
         // Check if HealthComponent is null and exit if it is
         if (healthComponent == null) return;
 
         // Get the health value and convert it to a 0 to 1 range, inverted
-        float healthNormalized = Mathf.Clamp01(healthComponent.Health / 100f);
+        float healthNormalized = Mathf.Clamp01(healthComponent.Health / healthComponent.MaxHealth);
         float invertedHealthNormalized = 1 - healthNormalized;
 
         // Set the shader's _TextureBlendingAmount to the inverted health value

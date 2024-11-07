@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 // TODO: Decide whether we want to have an enum for each level, i.e. Ballista Lvl 1, Ballista Lvl 2, etc, or decide if we even want Ballista as a type as opposed to just "Weapon" or "Resource"

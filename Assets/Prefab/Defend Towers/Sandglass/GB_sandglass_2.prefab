@@ -4944,7 +4944,7 @@ GameObject:
   - component: {fileID: 4425185209038287405}
   - component: {fileID: 3626213155622723094}
   m_Layer: 0
-  m_Name: GB_sandglass_2
+  m_Name: GB_Sandglass_2
   m_TagString: Attackable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

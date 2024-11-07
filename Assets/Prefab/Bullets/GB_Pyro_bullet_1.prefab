@@ -167,7 +167,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Speed: 5
   target: {fileID: 0}
-  impactParticle: {fileID: 1475406886948360, guid: 7b78e03091d73914f98938abe44d70ef,
+  impactParticle: {fileID: 589560848958704130, guid: 78dd99cd94a8a4c43ad67b83c10a4500,
     type: 3}
   impactNormal: {x: 0, y: 0, z: 0}
   twr: {fileID: 0}

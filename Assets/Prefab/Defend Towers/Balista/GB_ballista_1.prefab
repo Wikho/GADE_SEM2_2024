@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 9047555141765039637}
   m_Layer: 0
   m_Name: GB_ballista_1
-  m_TagString: Untagged
+  m_TagString: Attackable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
