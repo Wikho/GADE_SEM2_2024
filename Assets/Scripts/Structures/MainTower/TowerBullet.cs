@@ -13,6 +13,9 @@ public class TowerBullet : MonoBehaviour
     public TowerTurret twr;
     float i = 0.05f; 
 
+    public AudioClip sound;
+    private AudioSource audioSource;
+
     #endregion
 
     #region Unity Methods
@@ -60,6 +63,11 @@ public class TowerBullet : MonoBehaviour
             //Effects
             impactParticle = Instantiate(impactParticle, target.transform.position, Quaternion.FromToRotation(Vector3.up, impactNormal)) as GameObject;
             impactParticle.transform.parent = target.transform;
+
+            audioSource = gameObject.AddComponent<AudioSource>();
+            audioSource.volume = 0.5f;
+            audioSource.PlayOneShot(sound);
+
             Destroy(impactParticle, 3);
 
             return;

@@ -28,6 +28,9 @@ public class TowerTurret : MonoBehaviour
     //Components added when tower is spawned
     private SphereCollider col;
 
+    public AudioClip sound;
+    private AudioSource audioSource;
+
     #endregion
 
     #region Unity Methods
@@ -111,6 +114,12 @@ public class TowerTurret : MonoBehaviour
             //Give Bullet target position
             bullet.GetComponent<TowerBullet>().target = currentTarget.transform;
             bullet.GetComponent<TowerBullet>().twr = this.gameObject.GetComponent<TowerTurret>();
+
+            //Play Sound
+            audioSource = gameObject.AddComponent<AudioSource>();
+            audioSource.volume = 0.1f;
+            audioSource.PlayOneShot(sound);
+
         }
     }
 
