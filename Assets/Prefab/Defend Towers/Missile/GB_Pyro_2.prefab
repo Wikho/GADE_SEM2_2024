@@ -5069,6 +5069,7 @@ MonoBehaviour:
     type: 3}
   firePoint: {fileID: 8513558172449529442}
   enemiesInRange: []
+  sound: {fileID: 8300000, guid: 21622a3df978f7a49b4f10508163d107, type: 3}
 --- !u!114 &3411561364977742616
 MonoBehaviour:
   m_ObjectHideFlags: 0

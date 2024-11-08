@@ -171,6 +171,7 @@ MonoBehaviour:
     type: 3}
   impactNormal: {x: 0, y: 0, z: 0}
   twr: {fileID: 0}
+  sound: {fileID: 8300000, guid: 21622a3df978f7a49b4f10508163d107, type: 3}
 --- !u!65 &65956260307877730
 BoxCollider:
   m_ObjectHideFlags: 0

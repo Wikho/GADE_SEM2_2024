@@ -5332,6 +5332,7 @@ MonoBehaviour:
     type: 3}
   impactNormal: {x: 0, y: 0, z: 0}
   twr: {fileID: 0}
+  sound: {fileID: 8300000, guid: 461dbe771a0137c41a143b706a998a25, type: 3}
 --- !u!1 &1659521738289368
 GameObject:
   m_ObjectHideFlags: 0
