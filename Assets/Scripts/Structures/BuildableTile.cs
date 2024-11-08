@@ -141,7 +141,6 @@ public class BuildableTile : MonoBehaviour
 
     public void UpgradeTower()
     {
-        // NOTE: This is a jank ass solution, something better should be found later.
         if (m_spawnableCurrentlyAbove == null) // Can't delete what doesn't exist
             return;
 
